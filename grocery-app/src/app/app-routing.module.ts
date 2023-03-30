@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ErrorComponent } from './error/error.component';
-import { CartComponent } from './front/cart/cart/cart.component';
-import { CheckoutComponent } from './front/cart/checkout/checkout.component';
-import { HomeComponent } from './front/home/home.component';
-import { SuccessComponent } from './front/cart/success/success.component';
+import { HomeComponent } from './shared/components/home/home.component';
+
+import { SuccessComponent } from './modules/front/cart/success/success.component';
+import { CartComponent } from './modules/front/cart/cart/cart.component';
+import { CheckoutComponent } from './modules/front/cart/checkout/checkout.component';
+
 
 const routes: Routes = [{
     path: '',
@@ -16,7 +18,7 @@ const routes: Routes = [{
     component: HomeComponent
 }, {
     path: 'front',
-    loadChildren: () => import ('./front/front.module').then(u => u.FrontModule)
+    loadChildren: () => import ('./modules/front/front.module').then(u => u.FrontModule)
 },{
     path: '**',
     component: ErrorComponent

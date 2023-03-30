@@ -1,0 +1,34 @@
+<br>
+<div class="card border-0 text-black">
+    <img src="/assets/product_list_background.jpg" alt="" class="card-img img-fluid opacity-25" >
+    <div class="card-img-overlay text-center my-3 d-flex justify-content-center align-items-center">
+        <div>
+            <p id="product_list_text" class="card-title fs-1 fw-bolder">Checkout</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4 mb-4 p-2">
+    <div class="row justify-content-center">
+      <div class="col-md-5 ms-4">
+          <h3 class="text-center">Select Delivery Address</h3>
+        <div class="card mt-4 ms-4">
+          <div *ngFor="let address of address_user" class="ms-4">
+            <div class="form-check mt-4">
+              <input type="radio" class="form-check-input" name="address" id="{{address.id}}">
+              <label class="form-check-label" for="{{address.id}}">{{address.address}}</label>
+            </div>
+          </div>
+          <div class="card-body ms-4">
+            <h5 class="card-title">Review Order</h5>
+            <h6 class="card-subtitle mb-2 text-muted">By placing an order you agree to our Terms And Conditions</h6>
+            <p class="card-text">Payment Method : <b>Cash On Delivery</b></p>
+          </div>
+          <div class="d-flex justify-content-center mb-2"> 
+            <button class="btn btn-outline-secondary m-1" (click)="Cancel_Checkout()" >Cancel</button>
+            <button class="btn btn-success m-1" [disabled]="" (click)="Place_Order()">Place an Order</button>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>

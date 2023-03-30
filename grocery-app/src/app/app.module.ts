@@ -8,16 +8,19 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './error/error.component';
-import { CategoryComponent } from './front/catalogue/category/category.component';
-import { FilterComponent } from './front/catalogue/filter/filter.component';
-import { ProductListComponent } from './front/catalogue/product-list/product-list.component';
-import { HomeComponent } from './front/home/home.component';
+
+import { CategoryComponent } from './modules/front/catalogue/category/category.component';
+import { FilterComponent } from './modules/front/catalogue/filter/filter.component';
+import { ProductListComponent } from './modules/front/catalogue/product-list/product-list.component';
+import { HomeComponent } from './shared/components/home/home.component';
 
  
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
 const appRoute : Routes = [
   
 ]
@@ -29,7 +32,9 @@ const appRoute : Routes = [
     HomeComponent,
     CategoryComponent,
     ProductListComponent,
-    FilterComponent
+    FilterComponent,
+    HeaderComponent,
+    FooterComponent
     
   ],
   imports: [
@@ -39,7 +44,9 @@ const appRoute : Routes = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), 
+    ToastrModule.forRoot({
+        positionClass:'toast-bottom-center'
+    }), 
     HttpClientModule// ToastrModule added
    
   ],

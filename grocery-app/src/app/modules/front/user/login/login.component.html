@@ -1,0 +1,55 @@
+<br>
+<div class="card border-0 text-black">
+    <img src="assets/product_list_background.jpg" alt="" class="card-img img-fluid opacity-25" >
+    <div class="card-img-overlay text-center my-3 d-flex justify-content-center align-items-center">
+        <div>
+            <p id="product_list_text" class="card-title fs-1 fw-bolder">Login</p>
+        </div>
+    </div>
+</div>
+
+<form class="row g-3 d-flex justify-content-center" [formGroup]="loginForm" (ngSubmit)="Save_User_Login()" >
+
+  <div class="row g-3 d-flex justify-content-center">
+
+    <div class="col-md-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" formControlName="username" class="form-control" id="username" placeholder="Enter Username">
+    </div>
+
+    
+    <div *ngIf="get_login_details.name.touched && get_login_details.name.invalid" class="text-danger text-center">
+      <div *ngIf="get_login_details.name.errors?.['required']" class="text-danger">Username is required for login</div>
+    </div>
+
+  </div>
+
+  <div class="row g-3 d-flex justify-content-center"> 
+
+    <div class="col-md-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" formControlName="password" class="form-control" id="password" placeholder="Enter Password">
+    </div>
+
+    <div *ngIf="get_login_details.password.touched && get_login_details.password.invalid" class="text-danger text-center">
+      <div *ngIf="get_login_details.password.errors?.['required']" class="text-danger">Password is Required </div>
+      <div *ngIf="get_login_details.password.errors?.['minlength']" class="text-danger">Password Should be 8 Character</div>
+    </div>
+       
+  </div>
+      
+  <div class="row g-2 d-flex justify-content-center">
+
+    <div class="d-grid col-3 col-md-1 mx-auto">
+      <button type="submit" [disabled]="!loginForm.valid" class="btn btn-success">Login</button>
+    </div>
+
+  </div>
+
+  <div class="row g-2 d-flex text-center text-danger" *ngIf="!loginForm.valid"> 
+      <span class="text-danger">Please Enter all Details</span>
+  </div>
+
+ 
+    
+</form>
