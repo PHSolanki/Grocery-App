@@ -15,7 +15,7 @@
         <div class="card mt-4 ms-4">
           <div *ngFor="let address of address_user" class="ms-4">
             <div class="form-check mt-4">
-              <input type="radio" class="form-check-input" name="address" id="{{address.id}}">
+              <input type="radio" class="form-check-input" name="address" id="{{address.id}}" checked>
               <label class="form-check-label" for="{{address.id}}">{{address.address}}</label>
             </div>
           </div>
@@ -26,7 +26,7 @@
           </div>
           <div class="d-flex justify-content-center mb-2"> 
             <button class="btn btn-outline-secondary m-1" (click)="Cancel_Checkout()" >Cancel</button>
-            <button class="btn btn-success m-1" [disabled]="" (click)="Place_Order()">Place an Order</button>
+            <button class="btn btn-success m-1" (click)="Place_Order()">Place an Order</button>
           </div> 
         </div>
       </div>

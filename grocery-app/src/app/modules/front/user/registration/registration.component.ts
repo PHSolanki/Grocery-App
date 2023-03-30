@@ -15,10 +15,10 @@ export class RegistrationComponent {
       @Input() User_Register: any = new FormGroup({
         first_name: new FormControl('', [Validators.required,Validators.minLength(3)]),
         last_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-        primary_mobile_number: new FormControl('', [Validators.required,Validators.pattern('[()0-9]{10}'),]),
-        primary_email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
+        primary_mobile_number: new FormControl('', [Validators.required,Validators.pattern('[7-9]{1}[0-9]{9}')]),
+        primary_email: new FormControl('', [Validators.required, Validators.email]),
         username:new FormControl('',[Validators.required]),
-        password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+        password: new FormControl('', [Validators.required, Validators.minLength(5)]),
       });
     
       get get_User_Register() {

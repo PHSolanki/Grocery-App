@@ -18,8 +18,8 @@
     </div>
 
     
-    <div *ngIf="get_login_details.name.touched && get_login_details.name.invalid" class="text-danger text-center">
-      <div *ngIf="get_login_details.name.errors?.['required']" class="text-danger">Username is required for login</div>
+    <div *ngIf="get_login_details.username.touched && get_login_details.username.invalid" class="text-danger text-center">
+      <div *ngIf="get_login_details.username.errors?.['required']" class="text-danger">Username is required for login</div>
     </div>
 
   </div>
@@ -33,22 +33,20 @@
 
     <div *ngIf="get_login_details.password.touched && get_login_details.password.invalid" class="text-danger text-center">
       <div *ngIf="get_login_details.password.errors?.['required']" class="text-danger">Password is Required </div>
-      <div *ngIf="get_login_details.password.errors?.['minlength']" class="text-danger">Password Should be 8 Character</div>
+      <div *ngIf="get_login_details.password.errors?.['minlength']" class="text-danger">Password Should be 5 Character</div>
     </div>
        
   </div>
       
   <div class="row g-2 d-flex justify-content-center">
 
-    <div class="d-grid col-3 col-md-1 mx-auto">
+    <div class="d-grid col-3 col-md-1 mx-auto my-5">
       <button type="submit" [disabled]="!loginForm.valid" class="btn btn-success">Login</button>
     </div>
 
   </div>
 
-  <div class="row g-2 d-flex text-center text-danger" *ngIf="!loginForm.valid"> 
-      <span class="text-danger">Please Enter all Details</span>
-  </div>
+
 
  
     

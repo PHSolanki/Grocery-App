@@ -40,7 +40,7 @@
 
         <div class="col-md-5">
             <label for="contact" class="form-label">Primary Mobile Number</label>
-            <input type="text" formControlName="primary_mobile_numbe" class="form-control" id="contact" placeholder="Please Enter Contact">
+            <input type="text" formControlName="primary_mobile_number" class="form-control" id="contact" placeholder="Please Enter Contact">
         </div>
 
         <div class="col-md-5">
@@ -87,7 +87,7 @@
 
         <div *ngIf="get_User_Register.password.touched && get_User_Register.password.invalid" class="text-danger col-md-5">
             <div *ngIf="get_User_Register.password.errors?.['required']" class="text-danger">Password Must Required</div>
-            <div *ngIf="get_User_Register.password.errors?.['minlength']" class="text-danger">Password Length must be 8</div>
+            <div *ngIf="get_User_Register.password.errors?.['minlength']" class="text-danger">Password Length must be 5</div>
         </div>
 
     </div>
