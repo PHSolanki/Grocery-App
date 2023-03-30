@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/shared/Services/user.service';
+import { User_Login_Model } from 'src/data-type';
 
 
 @Component({
@@ -28,12 +29,13 @@ export class LoginComponent {
   get get_login_details(){
     return this.loginForm.controls
   }
-
+  loginFormValue:any
   Save_User_Login(){
     if(this.loginForm.valid){
+      
       console.log(this.loginForm.value)
-
-      this.userservice.userLogin(this.loginForm.value).subscribe((User_login_res:any)=>{
+      this.loginFormValue=this.loginForm.value
+      this.userservice.userLogin(this.loginFormValue).subscribe((User_login_res:any)=>{
         
         console.log("User_login_res",User_login_res);
         

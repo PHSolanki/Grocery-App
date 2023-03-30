@@ -9,7 +9,7 @@ export interface User_Register_Model {
   
   export interface User_Login_Model{
 
-    username: string | null;
-    password: string | null;
+    username: string | null,
+    password: string | null
     
   }

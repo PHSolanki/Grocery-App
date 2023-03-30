@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import {  User_Register_Model } from 'src/data-type';
+import {  User_Login_Model, User_Register_Model } from 'src/data-type';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -15,9 +15,9 @@ export class UserService {
 
   constructor(private http:HttpClient) { }
 
-  userLogin(data:any){
+  userLogin(data:User_Login_Model){
     try {
-      return this.http.post<User_Register_Model>(this.baseUrl+this.user_login, data)
+      return this.http.post<User_Login_Model>(this.baseUrl+this.user_login, data)
     } catch (error:any) {
       return throwError(() => new Error(error))
     }
