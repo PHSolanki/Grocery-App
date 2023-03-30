@@ -1,0 +1,11 @@
+<div class="my-5 mt-5 p-4">
+    <nav class="nav flex-column mt-2 w-25">
+        <a class="nav-link" aria-current="page" routerLink="/front/user/user-profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >Profile</a>
+        <a class="nav-link" routerLink="../orders" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Orders</a>
+        <a class="nav-link" routerLink="../manageaddress" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Manage Addresses</a>
+        <a class="nav-link" routerLink="../changepassword" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Change Password</a>
+        <a class="nav-link">Logout</a>
+    </nav>
+</div>
+<router-outlet></router-outlet>
+

@@ -1,0 +1,26 @@
+.multi-carousel-inner{
+    display: flex;
+}
+
+.detail-container{
+    display: flex;
+}
+
+.product-container{
+    display: flex;
+    margin: 10px;
+}
+
+.main-container{
+    display: flex;
+    padding: 50px ;
+    justify-content: space-evenly;
+}
+
+
+.division{
+    display: flex;
+    padding: 50px ;
+    justify-content: space-evenly;
+}
+

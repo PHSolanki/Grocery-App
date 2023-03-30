@@ -1,0 +1,28 @@
+.cart-section{
+    padding: 40px;
+}
+
+h2,span{
+    text-align: center;
+    padding: 10px;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  .someproducts{
+    margin-left: 475px;
+    padding: 10px;
+  }

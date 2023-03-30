@@ -1,0 +1,116 @@
+<br>
+
+<div class="card border-0 text-black">
+  <img src="assets/product_list_background.jpg" alt="" class="card-img img-fluid opacity-25"/>
+  <div class="card-img-overlay text-center my-3 d-flex justify-content-center align-items-center">
+    <div>
+      <p id="product_list_text" class="card-title fs-1 fw-bolder">{{getData}}</p>
+    </div>
+  </div>
+</div>
+
+<app-filter (selectCategory)="filterData($event)"></app-filter>
+
+<div class="container d-flex justify-content-space-around">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3">
+    <div class="col" *ngFor="let item of productsArray">
+      <div class="d-flex mx-5 justify-content-around flex-wrap" >
+
+      
+      <div class="card bg-white p-2 m-2" *ngIf="getData==='all' || getData===item.category">
+        <img class="rounded mx-auto d-block" [src]="item.source" width="120"height="120"/>
+        <div class="card-body" routerLink="/front/catalogue/product-details/{{item.id}}"  >
+          <small>{{item.name}}</small>
+          <h4>{{item.category}}</h4>
+          <ul class="card-body rating" data-mdb-toggle="rating">
+            <i class="fas fa-star fa-sm text-primary" title="Bad"></i>
+            <i class="fas fa-star fa-sm text-primary" title="Poor"></i>
+            <i class="fas fa-star fa-sm text-primary" title="OK"></i>
+            <i class="fas fa-star fa-sm text-primary" title="Good"></i>
+            <i class="far fa-star fa-sm text-primary" title="Excellent"></i>
+            <br>
+          </ul>
+          <small>{{item.rater}}</small>
+          <div class="text-center">
+            <i class="m-2 fw-bolder">{{item.moneyOfferPrice | currency}}</i>
+            <i class="text-decoration-line-through m-4">{{item.price | currency}}</i>
+            <button class="btn btn-outline-light" >
+              <i class="fas fa-shopping-cart">Add</i>
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="container text-center">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center">
+    <div class="col-10 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of productsArray">
+      <div class="card bg-white p-2 m-2" *ngIf="getData==='all' || getData===item.category">
+        <img class="rounded mx-auto d-block" [src]="item.source" alt="" width="120" height="120"/>
+        <div class="card-body">
+          <small>{{item.name}}</small>
+          <h4>{{item.category}}</h4>
+          <ul class="card-body rating" data-mdb-toggle="rating">
+            <i class="fas fa-star fa-sm text-primary" title="Bad"></i>
+            <i class="fas fa-star fa-sm text-primary" title="Poor"></i>
+            <i class="fas fa-star fa-sm text-primary" title="OK"></i>
+            <i class="fas fa-star fa-sm text-primary" title="Good"></i>
+            <i class="far fa-star fa-sm text-primary" title="Excellent"></i><br>
+          </ul>
+          <small>{{item.rater}}</small>
+          <div>        
+            <i class="fas fa-dollar-sign m-2">{{item.moneyOfferPrice}}</i>
+            <i class="fas fa-dollar-sign text-decoration-line-through m-4">{{item.price}}</i>
+            <button class="btn btn-outline-light"><i class="fas fa-shopping-cart">Add</i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="d-flex mx-5 justify-content-around flex-wrap">
+  <ng-container *ngFor="let item of featuredProducts">
+
+
+      <div class="card my-3" *ngIf=" getData === 'all' || getData === item.category ">
+          <img [src]="item.source" class="card-img-top" alt="Grocery item image" height="300px">
+          <div class="card-body">
+              <h5 class="card-title"> {{item.name}} </h5>
+              <p class="card-text">Price: {{item.price | currency}} </p>
+              <p class="card-text">Quantity: {{item.rater}} lb</p>
+              <p class="card-text">Category: {{item.category}}</p>
+              <p class="card-text">In stock: Yes</p>
+              <a href="#" class="btn btn-primary">Add to cart</a>
+          </div>
+      </div>
+
+  </ng-container>
+
+</div> -->

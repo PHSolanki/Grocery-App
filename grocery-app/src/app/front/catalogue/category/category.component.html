@@ -1,0 +1,82 @@
+ <!-- Start of Explore categories navbar -->
+
+<nav class="navbar navbar-expand-lg bg-transparent">
+  <div class="container-fluid">  
+    <h2 class="navbar-brand m-3" href="#">Explore Categories</h2>
+      <ul class="nav  justify-content-end m-3 ">
+        <li class="nav-item" *ngFor="let item of navCategories">
+
+          <a class="nav-link " aria-current="page" routerLink="/front/catalogue/product-list"  href="" *ngIf="item.name=='All'">All</a>
+          <a class="nav-link " aria-current="page" routerLink="/front/catalogue/product-list/{{item.name}}"  href="" *ngIf="item.name!=='All'">{{item.name}}</a>
+        </li>
+      </ul>
+  </div>
+</nav>
+
+ <!-- End of Explore categories navbar -->
+
+
+<!-- Start of Explore categories carousel  -->
+
+<carousel [autoplay]="true" [pauseOnHover]="true" [height]="300">
+
+    <div class="carousel-cell" *ngFor="let item of categories">
+        <div class="card bg-warning-subtle p-3 m-2">
+            <a routerLink="/front/catalogue/product-list/{{item.name}}" routerLinkActive="router-link-active"><img [src]="item.source" alt="" width="120" height="120"/></a>
+            <div class="card-body text-center">
+              <p>{{item.name}}</p>
+              <small>{{item.num_of_items}}items</small>
+            </div>
+        </div>
+    </div>
+
+</carousel>
+
+  <!-- End of Explore categories carousel  -->
+  
+
+      
+ 
+
+              <!-- <div class="card-deck">
+                <div class="card">
+                  <img class="card-img-top" src="assets/fruits.jpg"  width="239" height="200" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Fruits</h5>
+                    <p class="card-text"></p>
+                    <p class="card-text"><small class="text-muted">20 Items</small></p>
+                  </div>
+                </div>
+                <div class="card">
+                  <img class="card-img-top" src="assets/vegetables.jpg" width="239" height="200" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Vegetables</h5>
+                    <p class="card-text"></p>
+                    <p class="card-text"><small class="text-muted">44 items</small></p>
+                  </div>
+                </div>
+                <div class="card">
+                  <img class="card-img-top" src="assets/coffee.jpg" width="239" height="200"alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Coffee</h5>
+                    <p class="card-text"></p>
+                    <p class="card-text"><small class="text-muted">10 items</small></p>
+                  </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="assets/tea.jpg" width="239" height="200"alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">Tea</h5>
+                      <p class="card-text"></p>
+                      <p class="card-text"><small class="text-muted">20 items</small></p>
+                    </div>
+                </div>
+                <div class="card">
+                  <img class="card-img-top" src="assets/meat.jpeg" width="239" height="200"alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Meat</h5>
+                    <p class="card-text"></p>
+                    <p class="card-text"><small class="text-muted">40 items</small></p>
+                  </div>
+              </div>
+              </div> -->       

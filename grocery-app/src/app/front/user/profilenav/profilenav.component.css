@@ -1,0 +1,14 @@
+#product_list_text {
+    font-size: 1000px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.nav-link {
+    color: black;
+}
+.nav-link:hover {
+    color: rgb(11, 197, 89);
+}
+.dropdown-item:active {
+    background-color: white;
+}

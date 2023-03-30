@@ -1,0 +1,200 @@
+<br>
+
+<!-- Start of Carousel Slides-->
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"data-interval="">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="assets/Carousel-slide1.jpg" class="d-block w-100" width="100" height="550" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/Carousel-slide2.jpg" class="d-block w-100" width="100" height="550" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/Carousel-slide3.jpg" class="d-block w-100" width="100" height="550" alt="...">
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+<br><br>
+
+<!-- End of Carousel Slides-->
+
+
+<!-- category component -->
+<app-category></app-category>
+
+
+<!-- featured product navigation -->
+
+<nav class="navbar navbar-expand-lg bg-transparent">
+  <div class="container-fluid">
+    <h2 class="navbar-brand m-3" href="#">Featured Products</h2>
+      <ul class="nav  justify-content-end m-3 ">
+        <li class="nav-item" *ngFor="let item of navCategories">
+          <a class="nav-link " aria-current="page" routerLink="/front/catalogue/product-list" *ngIf="item.name=='All'">All</a>
+          <a class="nav-link " aria-current="page" routerLink="/front/catalogue/product-list/{{item.name}}" *ngIf="item.name!=='All'">{{item.name}}</a>
+        </li>
+      </ul>
+  </div>
+</nav>
+
+<!-- featured product cards -->
+<carousel [autoplay]="true" [pauseOnHover]="true" [height]="300">
+
+      <div class="carousel-cell" *ngFor="let item of productsArray">
+          <div class="card m-2">
+              <img class="card-img-top" [src]="item.source" alt="Card image cap" height="10" />
+              <div class="card-body" routerLink="/front/catalogue/product-details/{{item.id}}">
+                  <h5 class="card-title">{{item.name}}</h5>
+                  <p class="card-text">{{item.category}}</p>
+                  <ul class="list-unstyled list-inline my-2">
+                      <li class="list-inline-item mx-0"><i class="fas fa-star"></i></li>
+                      <li class="list-inline-item mx-0"><i class="fas fa-star"></i></li>
+                      <li class="list-inline-item mx-0"><i class="fas fa-star"></i></li>
+                      <li class="list-inline-item mx-0"><i class="fas fa-star"></i></li>
+                      <li class="list-inline-item mx-0"><i class="fas fa-star-half-alt"></i></li>
+                  </ul>
+                  <p>{{item.rater}}</p>
+                  <p class="price mb-0">${{item.price}}</p>
+                  <button><i class="fas fa-shopping-cart">Add</i></button>
+              </div>
+          </div>
+      </div>
+ 
+</carousel>
+<br>
+
+<!--  Start of Top sales , Top rated , Trending items , Recently Added -->
+
+<div class="main-container">
+
+  <div class="subdiv1">
+    
+      <h3><b>Top Sells</b></h3><br>
+      <ng-container *ngFor="let item of topsells">
+
+        <div class="product-container mb-1" routerLink="/front/catalogue/product-details/{{item.id}}" >
+          <div><img class="image-container" [src]="item.source" alt="" style="max-height: 100px; max-width: 100px;" ></div>
+        <div>
+            <div class="name-container">{{item.name}}</div>
+            <div class="detail-container">
+              <div class="details"><i class="fas fa-star"></i>
+            </div>
+        </div>
+            <div class="details" >${{item.price}}</div>
+          </div>
+          <br><br>
+        </div>
+        <br>
+
+      </ng-container>
+  </div>
+
+
+  <div class="subdiv2">
+
+    <h3><b>Top Rated</b></h3><br>
+    <ng-container *ngFor="let item of toprated">
+
+      <div class="product-container" routerLink="/front/catalogue/product-details/{{item.id}}" >
+        <div><img class="image-container" [src]="item.source" alt="" style="max-height: 80px; max-width: 80px;" ></div>
+        <div>
+          <div class="name-container">{{item.name}}</div>
+          <div class="detail-container">
+            <div class="details"><i class="fas fa-star"></i>
+            </div>
+          </div>
+          <div class="details" >${{item.price}}</div>
+        </div>
+      </div>
+      <br>
+
+    </ng-container>
+    
+
+</div>
+
+
+
+<div class="subdiv3">
+
+  <h3><b>Trending items</b></h3><br>
+
+  <ng-container *ngFor="let item of trendingItems">
+
+    <div class="product-container" routerLink="/front/catalogue/product-details/{{item.id}}" >
+      <div><img class="image-container" [src]="item.source" alt="" style="max-height: 80px; max-width: 80px;" ></div>
+      <div>
+        <div class="name-container">{{item.name}}</div>
+        <div class="detail-container">
+          <div class="details"><i class="fas fa-star"></i>
+          </div>
+        </div>
+        <div class="details" >${{item.price}}</div>
+      </div>
+    </div>
+    <br>
+
+  </ng-container>
+
+</div>
+
+
+<div class="subdiv4">
+
+  <h3><b>Recently Added</b></h3><br>
+  <ng-container *ngFor="let item of recentlyAdded">
+
+    <div class="product-container" >
+      <div><img class="image-container" [src]="item.source" alt="" style="max-height: 80px; max-width: 80px;" ></div>
+      <div>
+        <div class="name-container">{{item.name}}</div>
+        <div class="detail-container">
+          <div class="details"><i class="fas fa-star"></i>
+          </div>
+        </div>
+        <div class="details" >${{item.price}}</div>
+      </div>
+    </div>
+    <br>
+    
+  </ng-container>
+
+</div>
+
+</div>
+<!--  End of Top sales , Top rated , Trending items , Recently Added -->
+
+
+
+<!-- Start of Best deals & prices , Refundable , Free delivery -->
+
+<div class="division">
+
+  <div  class="d-flex justify-content-start" *ngFor="let item of features">
+    <div><img class="image-container" [src]="item.source" alt="" style="max-height: 50px; max-width: 50px;" ></div>
+      <div>
+        <div class="name-container"><b>{{item.title}}</b></div>
+          <div class="detail-container">
+            <div class="details">{{item.description}}</div>
+          </div>
+      </div>
+  </div>
+
+</div>
+
+<!-- End of Best deals & prices , Refundable , Free delivery -->

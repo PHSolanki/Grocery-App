@@ -1,0 +1,66 @@
+<br>
+<div class="card border-0 text-black">
+    <img src="/assets/product_list_background.jpg" alt="" class="card-img img-fluid opacity-25" >
+    <div class="card-img-overlay text-center my-3 d-flex justify-content-center align-items-center">
+        <div>
+            <p id="product_list_text" class="card-title fs-1 fw-bolder">Cart</p>
+        </div>
+    </div>
+</div>
+<section class="cart-section">
+
+    <div class="container">
+        <table *ngIf="getCartDetails.length else emptycart">
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Sub-total</th>
+                <th>Remove Item</th>
+            </tr>
+            <tr *ngFor="let item of getCartDetails">
+                <td><img src="{{item.source}}" alt=""></td>
+                <td>{{item.name}}</td>
+                <td>{{item.price | currency : 'USD'}}</td>
+                <td>
+                    <div class="button my-5 p-2">
+                        <button class=" btn-light" (click)="decQty(item)" >-</button>
+                        <span>{{item.quantity}}</span>
+                        <button class=" btn-light" (click)="incQty(item)" >+</button>
+                      </div>
+                </td>
+                <td>{{item.quantity * item.price | currency : 'USD'}}</td>
+                <td><button class="delete" (click)="singleDelete(item.id)"><i class="fas fa-trash"></i></button></td>
+            </tr>
+        </table>
+        
+    </div>
+    <ng-template #emptycart >
+        <h2>Your Cart is empty</h2>
+        <button class="btn btn-success someproducts my-5 " (click)="addProducts()">Add some Products</button>
+    </ng-template>
+    <br>
+    <div class="table-responsive container d-flex justify-content-end mt-3 mb-3" >
+        <table *ngIf="getCartDetails.length">
+            <tr>
+                <td class="fs-6">Subtotal:</td>
+                <td class="fs-6">{{ subTotal | currency : 'USD'}}</td>
+            </tr>
+            <tr>
+                <td class="fs-6">Delivery Charges :</td>
+                <td class="fs-6">---</td>
+            </tr>
+            <tr class="mb-2">
+                <td class="fs-6 fw-bolder">Total Price:</td>
+                <td class="fs-6 fw-bolder">{{ subTotal | currency : 'USD'}}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-center">
+                    <button type="button" class="btn btn-success w-100" (click)="checkout()"  >Checkout</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</section>

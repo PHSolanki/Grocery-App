@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+.active{
+    background-color: lightslategrey;
+}
+body{
+    margin-top: 50px;
+}
+
+/* html, body { height: 100%;padding-top: 100px; margin-top: 50px; } */
+
