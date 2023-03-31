@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class CartService {
+  
   getCartDetails: any;
   product: any;
   productId: any;

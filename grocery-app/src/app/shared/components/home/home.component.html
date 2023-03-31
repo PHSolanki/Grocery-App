@@ -44,7 +44,7 @@
   <div class="container-fluid">
     <h2 class="navbar-brand m-3" href="#">Featured Products</h2>
       <ul class="nav  justify-content-end m-3 ">
-        <li class="nav-item" *ngFor="let item of navCategories">
+        <li class="nav-item " *ngFor="let item of navCategories">
           <a class="nav-link " aria-current="page" routerLink="/front/catalogue/product-list" *ngIf="item.name=='All'">All</a>
           <a class="nav-link " aria-current="page" routerLink="/front/catalogue/product-list/{{item.name}}" *ngIf="item.name!=='All'">{{item.name}}</a>
         </li>
@@ -57,21 +57,20 @@
 
       <div class="carousel-cell" *ngFor="let item of productsArray">
           <div class="card m-2">
-              <img class="card-img-top" [src]="item.source" alt="Card image cap" height="100px" width="100px" />
-              <div class="card-body" routerLink="/front/catalogue/product-details/{{item.id}}">
+              <img class="card-img-top" [src]="item.source" routerLink="/front/catalogue/product-details/{{item.id}}" height="100px" width="100px" />
+              <div class="card-body" >
                   <h5 class="card-title">{{item.name}}</h5>
                   <p class="card-text">{{item.category}}</p>
                   <ul class="list-unstyled list-inline my-2">
-                      <li class="list-inline-item mx-0"><i class="fas fa-star"></i></li>
-                      <li class="list-inline-item mx-0"><i class="fas fa-star"></i></li>
-                      <li class="list-inline-item mx-0"><i class="fas fa-star"></i></li>
-                      <li class="list-inline-item mx-0"><i class="fas fa-star"></i></li>
-                      <li class="list-inline-item mx-0"><i class="fas fa-star-half-alt"></i></li>
+                      <li class="list-inline-item mx-0"><i class="fas fa-star text-success"></i></li>
+                      <li class="list-inline-item mx-0"><i class="fas fa-star text-success"></i></li>
+                      <li class="list-inline-item mx-0"><i class="fas fa-star text-success"></i></li>
+                      <li class="list-inline-item mx-0"><i class="fas fa-star text-success"></i></li>
+                      <li class="list-inline-item mx-0"><i class="fas fa-star-half-alt text-success"></i></li>
                   </ul>
-                  <p>{{item.rater}}</p>
                   <p class="price mb-0">${{item.price}}</p>
+                  <button class="btn btn-success" (click)="addToCart(item)"><i class="fas fa-shopping-cart">Add</i></button>
                 </div>
-                <button class="btn btn-success" (click)="addToCart(item)"><i class="fas fa-shopping-cart">Add</i></button>
           </div>
       </div>
  
@@ -84,7 +83,7 @@
 
   <div class="subdiv1">
     
-      <h3><b>Top Sells</b></h3><br>
+      <h3 class="text-success"><b>Top Sells</b></h3><br>
       <ng-container *ngFor="let item of topsells">
 
         <div class="product-container mb-1" routerLink="/front/catalogue/product-details/{{item.id}}" >
@@ -107,7 +106,7 @@
 
   <div class="subdiv2">
 
-    <h3><b>Top Rated</b></h3><br>
+    <h3 class="text-success"><b>Top Rated</b></h3><br>
     <ng-container *ngFor="let item of toprated">
 
       <div class="product-container" routerLink="/front/catalogue/product-details/{{item.id}}" >
@@ -132,7 +131,7 @@
 
 <div class="subdiv3">
 
-  <h3><b>Trending items</b></h3><br>
+  <h3 class="text-success"><b>Trending items</b></h3><br>
 
   <ng-container *ngFor="let item of trendingItems">
 
@@ -156,7 +155,7 @@
 
 <div class="subdiv4">
 
-  <h3><b>Recently Added</b></h3><br>
+  <h3 class="text-success"><b>Recently Added</b></h3><br>
   <ng-container *ngFor="let item of recentlyAdded">
 
     <div class="product-container" >

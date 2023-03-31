@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/shared/Services/auth.service';
+import { AuthService } from 'src/app/shared/Services/Registration-service/registration.service';
 
 
 @Component({
@@ -13,9 +13,9 @@ export class RegistrationComponent {
     constructor(private _authservice:AuthService){}
 
       @Input() User_Register: any = new FormGroup({
-        first_name: new FormControl('', [Validators.required,Validators.minLength(3)]),
-        last_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-        primary_mobile_number: new FormControl('', [Validators.required,Validators.pattern('[7-9]{1}[0-9]{9}')]),
+        first_name: new FormControl('', Validators.required),
+        last_name: new FormControl('', Validators.required),
+        primary_mobile_number: new FormControl('', [Validators.required,Validators.pattern("[7-9]{1}[0-9]{9}")]),
         primary_email: new FormControl('', [Validators.required, Validators.email]),
         username:new FormControl('',[Validators.required]),
         password: new FormControl('', [Validators.required, Validators.minLength(5)]),

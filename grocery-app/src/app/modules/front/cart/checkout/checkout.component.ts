@@ -1,7 +1,7 @@
 import { compileNgModule } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartService } from 'src/app/shared/Services/cart.service';
+import { CartService } from 'src/app/shared/Services/cart-service/cart.service';
 
 @Component({
   selector: 'app-checkout',

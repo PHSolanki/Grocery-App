@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CartService } from 'src/app/shared/Services/cart.service';
+import { CartService } from 'src/app/shared/Services/cart-service/cart.service';
 
 @Component({
   selector: 'app-product-list',

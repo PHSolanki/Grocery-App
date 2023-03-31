@@ -20,7 +20,7 @@ export class AuthService {
 User_Register(data:User_Register_Model){
   try {
     return this.http.post<User_Register_Model>(this.baseUrl+this.user_register,data)
-  } catch (error:any) {
+  }catch (error:any) {
     return throwError(() => new Error(error))
   }
 }
