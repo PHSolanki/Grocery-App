@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CartService } from 'src/app/shared/Services/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -7,35 +9,31 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
+  
+  product: any;
+  productId: any;
+  itemsCart:any=[];
+  getData:string | null = "All"
+  productsArray!:any[]
 
-  constructor(private currentProduct:ActivatedRoute){}
+
+  constructor(private currentProduct:ActivatedRoute ,private toast:ToastrService ,private cartservice:CartService){}
 
   ngOnInit(){
     this.getProduct()
     this.scroll()
+    this.getProductId()
+    this. productsArray=this.cartservice.productData()
   }
 
   scroll(){
     window.scrollTo(0,0)
   }
 
-  productsArray=[
-    {id:1, source:'/assets/featured2.PNG' , quantity:1, name:'Potatos' , category:'Vegetables' , rater:'By Mr.food' , price:'14.99' , moneyOfferPrice:'10'},
-    {id:2, source:'/assets/topsells1.PNG' , quantity:1, name:'Orange ' , category:'Fruits' , rater:'By Mr.food' , price:'12' ,moneyOfferPrice:'8'},
-    {id:3, source:'/assets/featured2.PNG' , quantity:1, name:'Potatos' , category:'Vegetables' , rater:'By Mr.food' , price:'14.99',moneyOfferPrice:'10'},
-    {id:4, source:'/assets/topsells1.PNG' , quantity:1, name:'Orange ' , category:'Fruits' , rater:'By Mr.food' , price:'12.99',moneyOfferPrice:'10'},
-    {id:5, source:'/assets/featured4.PNG' , quantity:1, name:'Broccoli' , category:'Vegetables' , rater:'By Mr.food' , price:'10.99',moneyOfferPrice:'10'},
-    {id:6, source:'/assets/topsells1.PNG' , quantity:1, name:'Orange ' , category:'Fruits' , rater:'By Mr.food' , price:'12',moneyOfferPrice:'10'},
-    {id:7, source:'/assets/featured5.PNG' , quantity:1, name:'Beans ' , category:'Vegetables' , rater:'By Mr.food' , price:'19.99',moneyOfferPrice:'10'},
-    {id:8, source:'/assets/topsells1.PNG' , quantity:1, name:'Orange ' , category:'Fruits' , rater:'By Mr.food' , price:'12',moneyOfferPrice:'10'},
-    {id:9, source:'/assets/featured1.PNG' , quantity:1, name:'Redish ' , category:'Vegetables' , rater:'By Mr.food' , price:'12',moneyOfferPrice:'10'},
-    {id:10, source:'/assets/topsells1.PNG' , quantity:1, name:'Orange ' , category:'Fruits' , rater:'By Mr.food' , price:'12.99',moneyOfferPrice:'10'},
-    {id:11, source:'/assets/featured3.PNG' , quantity:1, name:'Tomatos ' , category:'Vegetables' , rater:'By Mr.food' , price:'12.99',moneyOfferPrice:'10'},
-    {id:12, source:'/assets/topsells1.PNG' , quantity:1, name:'Orange ' , category:'Fruits' , rater:'By Mr.food' , price:'14.99',moneyOfferPrice:'10'}
-  ]
-
-  getData:string | null = "all"
-
+  getProductId(){
+    this.cartservice.getProductId()
+  }
+  
   filterData(data:any){
       this.getData=data
       console.log(this.getData);  
@@ -44,13 +42,16 @@ export class ProductListComponent {
   getProduct(){
     this.currentProduct.paramMap.subscribe((x)=>{
       if(x.get('name')==null){
-        this.getData = "all"
+        this.getData = "All"
       }else{
         this.getData= x.get('name')
       }
     })
   }
 
+  addToCart(category: any){    
+    this.cartservice.addToCart(category)
+  }
 
   
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartService } from '../../Services/cart.service';
 
 
 @Component({
@@ -8,9 +9,12 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  constructor(private cartservice:CartService){  }
+
   ngOnInit(){
-    this.scroll
+    this.scroll()
   }
+
   scroll(){
     window.scrollBy(0,0)
   }
@@ -22,12 +26,6 @@ export class HomeComponent {
     {name:'Fruits'},
     {name:'Coffee And Teas'},
     {name:'Meat'}
-  ]
-
-  carouselSlide=[
-    {source: 'assets/Carousel-slide1.jpg'},
-    {source: 'assets/Carousel-slide2.jpg'},
-    {source: 'assets/Carousel-slide3.jpg'},
   ]
 
 
@@ -86,4 +84,9 @@ recentlyAdded=[
   {title:'Refundable',source:'assets/Capture2.PNG' ,description:'If your items have damagewe agree to refund it'},
   {title:'Free delivery',source:'assets/Capture3.PNG' ,description:'Do purchase over $50 and get free delivery anywhere'}
  ]
+
+ addToCart(category: any){
+  this.cartservice.addToCart(category)
+ }
+ 
 }

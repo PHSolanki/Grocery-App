@@ -53,11 +53,11 @@
 </nav>
 
 <!-- featured product cards -->
-<carousel [autoplay]="true" [pauseOnHover]="true" [height]="300">
+<carousel [autoplay]="true" [pauseOnHover]="true" [height]="500">
 
       <div class="carousel-cell" *ngFor="let item of productsArray">
           <div class="card m-2">
-              <img class="card-img-top" [src]="item.source" alt="Card image cap" height="10" />
+              <img class="card-img-top" [src]="item.source" alt="Card image cap" height="100px" width="100px" />
               <div class="card-body" routerLink="/front/catalogue/product-details/{{item.id}}">
                   <h5 class="card-title">{{item.name}}</h5>
                   <p class="card-text">{{item.category}}</p>
@@ -70,8 +70,8 @@
                   </ul>
                   <p>{{item.rater}}</p>
                   <p class="price mb-0">${{item.price}}</p>
-                  <button><i class="fas fa-shopping-cart">Add</i></button>
-              </div>
+                </div>
+                <button class="btn btn-success" (click)="addToCart(item)"><i class="fas fa-shopping-cart">Add</i></button>
           </div>
       </div>
  

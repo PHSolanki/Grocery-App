@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CartService } from 'src/app/shared/Services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -9,9 +10,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProductDetailsComponent implements OnInit{
 
-  constructor(private activatedroute:ActivatedRoute , private toast:ToastrService){  }
+  constructor(private activatedroute:ActivatedRoute , private toast:ToastrService , private cartservice:CartService){  }
 
   value:any;
+  itemsCart:any=[];
+  product: any;
+  productId: any;
+  
 
   productsArray=[
     {id:1, source:'/assets/featured2.PNG' , quantity:1, name:'Potatos' , category:'Vegetables' , rater:'By Mr.food' , price:'14.99' , moneyOfferPrice:'10'},
@@ -36,8 +41,7 @@ export class ProductDetailsComponent implements OnInit{
     {id:21 , source:'assets/topsells1.PNG' , quantity:1, name:'Orange 1kg' ,category:'Vegetables', price:'13' }
   ]
 
-  product: any;
-  productId: any;
+  
 
   ngOnInit(): void{
 
@@ -69,39 +73,10 @@ export class ProductDetailsComponent implements OnInit{
     }
   }
 
-  itemsCart:any=[]
+  
 
   addToCart(category: any){
-
-    this.toast.success('product added to cart')
-
-    console.log(category);
-
-    let cartDataNull=localStorage.getItem('localCart');
-    if(cartDataNull == null){
-      let storedData : any = []
-      storedData.push(category)
-      localStorage.setItem('localCart' ,JSON.stringify(storedData)) 
-    }
-    else{
-      var id = category.id;
-      let index : number = -1;
-      this.itemsCart=JSON.parse(localStorage.getItem('localCart')!)
-      for(let i=0 ; i<this.itemsCart.length ; i++){
-        if(parseInt(id) == parseInt(this.itemsCart[i].id)){
-          this.itemsCart.quantity = category.quantity;
-          index = i;
-          break          
-        }
-      }
-      if(index == -1){
-        this.itemsCart.push(category);
-        localStorage.setItem('localCart' , JSON.stringify(this.itemsCart))
-      }
-      else{
-        localStorage.setItem('localCart' ,JSON.stringify(this.itemsCart))
-      }
-    }
+    this.cartservice.addToCart(category)
   }
 
 }

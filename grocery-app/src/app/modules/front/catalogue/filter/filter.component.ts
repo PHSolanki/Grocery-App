@@ -15,7 +15,7 @@ export class FilterComponent {
     this.getProduct()
   }
 
-  selectedValue:any ='all'
+  selectedValue:any ='All'
 
   @Output()
   selectCategory : EventEmitter<any> = new EventEmitter<any>()
@@ -28,7 +28,7 @@ export class FilterComponent {
   getProduct(){
     this.currentProduct.paramMap.subscribe((x)=>{
       if(x.get('name')==null){
-        this.selectedValue = "all"
+        this.selectedValue = "All"
       }else{
         this.selectedValue= x.get('name')
       }

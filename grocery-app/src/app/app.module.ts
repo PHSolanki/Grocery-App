@@ -45,7 +45,7 @@ const appRoute : Routes = [
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
-        positionClass:'toast-bottom-center'
+      positionClass:'toast-bottom-center'
     }), 
     HttpClientModule// ToastrModule added
    
