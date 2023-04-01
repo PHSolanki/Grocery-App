@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { ChangepasswordService } from 'src/app/shared/Services/Change Password-Service/changepassword.service';
 
 @Component({
   selector: 'app-changepassword',
@@ -8,9 +9,25 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn,
 })
 export class ChangepasswordComponent {
 
+  constructor(private changepassword:ChangepasswordService){}
+
+  Change_Pass(){    
+
+    if(this.changePass.valid){
+
+    this.changepassword.changePassword(this.changePass.value).subscribe((res)=>{
+      console.log(res);      
+    })
+
+    }
+  }
+
   ngOnInit(){
     this.scroll()
   }
+
+
+
   scroll(){
     window.scrollBy(0,0)
   }
