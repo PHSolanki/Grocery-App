@@ -1,7 +1,6 @@
-import { compileNgModule } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { ChangepasswordService } from 'src/app/shared/Services/Change Password-Service/changepassword.service';
+import { editUserService } from 'src/app/shared/Services/Edit user-Service/edituser.service';
 
 @Component({
   selector: 'app-changepassword',
@@ -10,7 +9,7 @@ import { ChangepasswordService } from 'src/app/shared/Services/Change Password-S
 })
 export class ChangepasswordComponent {
 
-  constructor(private changepassword:ChangepasswordService){}
+  constructor(private changepassword:editUserService){}
 
   ngOnInit(){
     this.scroll()
@@ -39,14 +38,14 @@ export class ChangepasswordComponent {
     };
   }
   
-    Change_Pass(){
+  Change_Pass(){
   
-      console.log(this.changePass.value);
+    console.log(this.changePass.value);
       
-      this.changepassword.changePassword(this.changePass.value).subscribe((res)=>{
-        console.log(res);      
-      })
-    }
+    this.changepassword.changePassword(this.changePass.value).subscribe((res)=>{
+    console.log(res);      
+    })
+  }
   
     
   

@@ -33,7 +33,7 @@
 
     <div *ngIf="get_login_details.password.touched && get_login_details.password.invalid" class="text-danger text-center">
       <div *ngIf="get_login_details.password.errors?.['required']" class="text-danger">Password is Required </div>
-      <div *ngIf="get_login_details.password.errors?.['minlength']" class="text-danger">Password Should be 5 Character</div>
+      <div *ngIf="get_login_details.password.errors?.['minlength']" class="text-danger">Password must have atleast 4 Character</div>
     </div>
        
   </div>

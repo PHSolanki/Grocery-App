@@ -21,7 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
-import { AuthInterceptor } from 'src/auth.interceptor';
+import { AuthInterceptor } from 'src/app/shared/Interceptor/auth.interceptor';
 const appRoute : Routes = [
   
 ]

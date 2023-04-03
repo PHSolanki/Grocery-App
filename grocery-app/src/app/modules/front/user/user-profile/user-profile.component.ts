@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { editUserService } from 'src/app/shared/Services/Edit user-Service/edituser.service';
+
+
 
 
 @Component({
@@ -13,32 +16,37 @@ export class UserProfileComponent {
   public user: any;
   RegisterData:any
   
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute , private edituser: editUserService ) { }
+
   ngOnInit(): void {
   
     }
 
     Profile =new FormGroup({
-      firstname:new FormControl ("",Validators.required),
-      lastname:new FormControl ("",Validators.required),
-      email:new FormControl ("",[Validators.required, Validators.email]),
-      alternateemail:new FormControl ("",[Validators.required,Validators.email]),
-      contact:new FormControl('',[Validators.required,Validators.pattern("[7-9]{1}[0-9]{9}")]),
-      alternatecontact:new FormControl('',[Validators.required,Validators.pattern("[7-9]{1}[0-9]{9}")]),
-      dob:new FormControl('',[Validators.required])   
+      first_name:new FormControl ("",Validators.required),
+      last_name:new FormControl ("",Validators.required),
+      password:new FormControl ("",[Validators.required,Validators.minLength(4)]),
+      secondary_email:new FormControl ("",[Validators.required,Validators.email]),
+      secondary_mobile_number:new FormControl('',[Validators.required,Validators.pattern("[7-9]{1}[0-9]{9}")]),
+      date_of_birth:new FormControl('',[Validators.required])   
     })
    
-       get get_Profile(){
-         return this.Profile.controls
-       }
+    get get_Profile(){
+      return this.Profile.controls
+    }
    
-       Save_Profile(){
-         if(this.Profile.valid){
+    Save_Profile(){
+
+      if(this.Profile.valid){
    
-           console.log(this.Profile.value)
+        console.log(this.Profile.value)
+        this.edituser.editUser(this.Profile.value).subscribe((res)=>{
+          console.log(res);
+          
+        })
            
-         }
+      }
      
-       }
+    }
 
 }

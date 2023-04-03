@@ -4,4 +4,6 @@ export const environment = {
     user_login:"customer/login",
     change_password:"customer/changePassword",
     all_category:"category/get-all-categories",
+    edit_user :"customer/update-customer" ,
+    add_address : "customer/add-customer-address"
 };

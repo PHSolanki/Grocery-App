@@ -31,6 +31,7 @@
             <div *ngIf="get_User_Register.last_name.touched && get_User_Register.last_name.invalid" class="text-danger col-md-5 mt-1">
                 <div *ngIf="get_User_Register.last_name.errors?.['required']" class="text-danger">Please Enter Last Name</div>
             </div>
+            
         </div>
 
     </div>
@@ -83,7 +84,7 @@
 
             <div *ngIf="get_User_Register.password.touched && get_User_Register.password.invalid" class="text-danger col-md-5 mt-1">
                 <div *ngIf="get_User_Register.password.errors?.['required']" class="text-danger">Please Enter Password</div>
-                <div *ngIf="get_User_Register.password.errors?.['minlength']" class="text-danger">Password Length must be 8</div>
+                <div *ngIf="get_User_Register.password.errors?.['minlength']" class="text-danger">Password length should be atleast 4 characters</div>
             </div>
 
         </div>
