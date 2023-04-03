@@ -1,3 +1,4 @@
+import { compileNgModule } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ChangepasswordService } from 'src/app/shared/Services/Change Password-Service/changepassword.service';
@@ -11,30 +12,17 @@ export class ChangepasswordComponent {
 
   constructor(private changepassword:ChangepasswordService){}
 
-  Change_Pass(){    
-
-    if(this.changePass.valid){
-
-    this.changepassword.changePassword(this.changePass.value).subscribe((res)=>{
-      console.log(res);      
-    })
-
-    }
-  }
-
   ngOnInit(){
     this.scroll()
   }
-
-
-
+  
   scroll(){
     window.scrollBy(0,0)
   }
-
+  
   changePass = new FormGroup({
-    currentPass : new FormControl("" , [Validators.required,Validators.minLength(4)]),
-    newPass : new FormControl("" , [Validators.required,Validators.minLength(4)]),
+    oldPassword : new FormControl("" , [Validators.required,Validators.minLength(4)]),
+    newPassword : new FormControl("" , [Validators.required,Validators.minLength(4)]),
     confirmNewPass : new FormControl("" , [Validators.required,this.matchPasswordValidator()])
   })
 
@@ -44,10 +32,23 @@ export class ChangepasswordComponent {
 
   matchPasswordValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      const newpassword = control.root.get('newPass')?.value;
+      const newPassword = control.root.get('newPassword')?.value;
       const confirmPassword = control.value;
-
-      return newpassword === confirmPassword ? null : { matchPassword: { value: control.value } };
+      
+      return newPassword === confirmPassword ? null : { matchPassword: { value: control.value } };
     };
-}
+  }
+  
+    Change_Pass(){
+  
+      console.log(this.changePass.value);
+      
+      this.changepassword.changePassword(this.changePass.value).subscribe((res)=>{
+        console.log(res);      
+      })
+    }
+  
+    
+  
+  
 }

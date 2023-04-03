@@ -15,7 +15,7 @@ export class ChangepasswordService {
 
   changePassword(data:any){
     try {
-      return this.http.post<any>("https://e099-117-217-127-105.in.ngrok.io/api/v1/customer/changePassword", data)
+      return this.http.put<any>(this.baseUrl+this.change_password, data)
     } catch (error:any) {
       return throwError(() => new Error(error))
     }
