@@ -6,6 +6,7 @@ import { CartComponent } from './cart/cart/cart.component';
 import { ProductDetailsComponent } from './catalogue/product-details/product-details.component';
 import { CheckoutComponent } from './cart/checkout/checkout.component';
 import { HomeComponent } from '../../shared/components/home/home.component';
+import { AuthGuard } from 'src/app/Guards/auth.guard';
 
 const routes: Routes = [
 {path: '',redirectTo: 'home',pathMatch: 'full'}, 
@@ -13,13 +14,17 @@ const routes: Routes = [
 {path: 'home',component: HomeComponent}, 
 
 {path: 'user',    
-  loadChildren: () => import ('./user/user.module').then(m => m.UserModule)},  
+  
+  loadChildren: () => import ('./user/user.module').then(m => m.UserModule)
+},  
 
 {path: 'catalogue',
   loadChildren: () => import ('./catalogue/catalogue.module').then(u => u.CatalogueModule)},
 
 {path:'cart',
-  loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)},
+  canActivate:[AuthGuard],
+  loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
+},
   
 {path: '**',component: ErrorComponent}
 ];

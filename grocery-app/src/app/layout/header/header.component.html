@@ -20,18 +20,17 @@
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item" [routerLinkActive]="'active'">
-                <a class="nav-link text-white" routerLink="front/user/register" href="#">Register</a>
+                <a class="nav-link text-white" routerLink="front/user/register" *ngIf="!userExist">Register</a>
               </li>
               <li class="nav-item" [routerLinkActive]="'active' ">
-                <a class="nav-link text-white " routerLink="front/user/login" aria-current="page" href="#">Login</a>
+                <a class="nav-link text-white " routerLink="front/user/login" aria-current="page" *ngIf="!userExist">Login</a>
               </li>
               <li class="nav-item" [routerLinkActive]="'active'">
-                <a class="nav-link text-white " routerLink="front/user/user-profile" >User-Profile</a>
+                <a class="nav-link text-white " routerLink="front/user/user-profile" *ngIf="userExist" >{{name}}</a>
               </li>
               <li class="nav-item" [routerLinkActive]="'active'">
-                <a class="nav-link text-white " routerLink="front/cart"><i class="fas fa-shopping-cart"></i></a>
+                <a class="nav-link text-white " routerLink="front/cart"><i class="fas fa-shopping-cart"><span class=" top-0 start-100 translate-middle badge rounded-pill bg-danger">{{cartItem}}</span></i></a>
               </li>
-              <div class="text-white ">{{cartItem}}</div>
             </ul>
           </div>
       </div>

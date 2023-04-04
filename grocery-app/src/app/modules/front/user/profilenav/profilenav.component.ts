@@ -13,4 +13,9 @@ export class ProfilenavComponent {
   scroll(){
     window.scrollBy(0,0)
   }
+
+  logOut(){
+    localStorage.removeItem('token')
+    localStorage.removeItem('Login Credentials')
+  }
 }

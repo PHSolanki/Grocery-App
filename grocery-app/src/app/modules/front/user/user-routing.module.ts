@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ErrorComponent } from 'src/app/error/error.component';
+import { AuthGuard } from 'src/app/Guards/auth.guard';
 import { HomeComponent } from '../../../shared/components/home/home.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { LoginComponent } from './login/login.component';
@@ -16,10 +17,10 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'login' , component:LoginComponent},
   {path:'register' , component:RegistrationComponent},
-  {path:'user-profile' , component:UserProfileComponent},
-  {path:'orders' , component:OrdersComponent},
-  {path:'manageaddress' , component:ManageaddressComponent},
-  {path:'changepassword' , component:ChangepasswordComponent},
+  {path:'user-profile' ,canActivate:[AuthGuard], component:UserProfileComponent},
+  {path:'orders' , canActivate:[AuthGuard], component:OrdersComponent},
+  {path:'manageaddress' , canActivate:[AuthGuard] , component:ManageaddressComponent},
+  {path:'changepassword' , canActivate:[AuthGuard], component:ChangepasswordComponent},
   {path:'**',component:ErrorComponent}
 
 ];

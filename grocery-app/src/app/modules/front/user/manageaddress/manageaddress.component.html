@@ -94,24 +94,23 @@
 
             <div class="col-md-5">
   
-                <label for="alternatecontact" class="form-label">Postal Code</label>
-                <input type="text" formControlName="postal_code" class="form-control" id="alternatecontact" placeholder="Enter Your Postal Code">
+              <label for="alternatecontact" class="form-label">Postal Code</label>
+              <input type="text" formControlName="postal_code" class="form-control" id="alternatecontact" placeholder="Enter Your Postal Code">
                 
-                <div *ngIf="get_Address.postal_code.touched && get_Address.postal_code.invalid" class="text-danger col-md-5">
-                  <div *ngIf="get_Address.postal_code.errors?.['required']" class="text-danger">Please Enter Postal Code</div>
-                  <!-- <div *ngIf="get_Address.postal_code.errors?.['pattern']" class="text-danger">Please Enter Valid Postal Code</div> -->
-                </div>
+              <div *ngIf="get_Address.postal_code.touched && get_Address.postal_code.invalid" class="text-danger col-md-5">
+                <div *ngIf="get_Address.postal_code.errors?.['required']" class="text-danger">Please Enter Postal Code</div>
+              </div>
                 
             </div>
 
             <div class="col-md-5">
   
-                <label for="alternatecontact" class="form-label">landmark</label>
-                <input type="text" formControlName="landmark" class="form-control" id="alternatecontact" placeholder="Enter your landmark">
+              <label for="alternatecontact" class="form-label">landmark</label>
+              <input type="text" formControlName="landmark" class="form-control" id="alternatecontact" placeholder="Enter your landmark">
                 
-                <div *ngIf="get_Address.landmark.touched && get_Address.landmark.invalid" class="text-danger col-md-5">
-                  <div *ngIf="get_Address.landmark.errors?.['required']" class="text-danger">Please Enter your Landmark</div>
-                </div>
+              <div *ngIf="get_Address.landmark.touched && get_Address.landmark.invalid" class="text-danger col-md-5">
+                <div *ngIf="get_Address.landmark.errors?.['required']" class="text-danger">Please Enter your Landmark</div>
+              </div>
                 
             </div>
 

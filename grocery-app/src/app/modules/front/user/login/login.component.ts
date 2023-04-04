@@ -39,6 +39,9 @@ export class LoginComponent {
       
       console.log(this.loginForm.value)
       this.loginFormValue=this.loginForm.value
+
+      localStorage.setItem('Login Credentials', JSON.stringify(this.loginFormValue))
+
       this.userservice.userLogin(this.loginFormValue).subscribe((User_login_res:any)=>{
         
       console.log("User_login_res",User_login_res);

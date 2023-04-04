@@ -57,9 +57,9 @@ export class CartService {
     }
   }
 
-    getProductId(){
+  getProductId(){
     this.productId = this.currentProduct.snapshot.paramMap.get('id');
-     this.product= this.productsArray.find(x => x.id == this.productId)
+    this.product= this.productsArray.find(x => x.id == this.productId)
   }
 
 
