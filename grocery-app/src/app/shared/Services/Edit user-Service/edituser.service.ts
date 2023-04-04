@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { environment } from 'src/environments/environment.development';
@@ -14,6 +14,7 @@ export class editUserService {
   change_password = environment.change_password
   edit_user = environment.edit_user
   add_address = environment.add_address
+  customers_details = environment.customers_details
 
   changePassword(data:any){
     try {
@@ -22,7 +23,6 @@ export class editUserService {
       return throwError(() => new Error(error))
     }
   }
-
 
   editUser(data:any){
     try {
@@ -40,4 +40,11 @@ export class editUserService {
     }
   }
 
+  getUserDetails(){
+    try{
+      return this.http.get<any>(this.baseUrl+this.customers_details,{headers: new HttpHeaders({'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*'})})
+    }catch (error:any){
+      return throwError(()=>new Error(error))
+    }
+  }
 }

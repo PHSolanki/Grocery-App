@@ -25,7 +25,7 @@ export class CategoryComponent {
   }
 
 scroll(){
-  window.scrollTo(0,0)
+  window.scroll(0,0)
 }
 
   navCategories=[

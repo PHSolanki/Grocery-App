@@ -27,7 +27,7 @@ export class ProductListComponent {
   }
 
   scroll(){
-    window.scrollTo(0,0)
+    window.scrollBy(0,0)
   }
 
   getProductId(){

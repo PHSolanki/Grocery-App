@@ -68,6 +68,7 @@ export class CartComponent {
         return acc +(val.price * val.quantity);
       },0)     
     }
+    this.cartservice.cartTotal.emit(this.subTotal)
   }
 
 
@@ -81,7 +82,9 @@ export class CartComponent {
           this.getCartDetails.splice(i,1);
           console.log(this.getCartDetails);
           localStorage.setItem( 'localCart', JSON.stringify(this.getCartDetails))
+
         }
+        this.cartservice.cartData.emit(this.getCartDetails)
       }
     }    
   }

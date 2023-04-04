@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/shared/Services/cart-service/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -8,17 +9,29 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private router:Router){}
+  constructor(private router:Router , private cartservice : CartService){}
 
   ngOnInit(){
     this.cartItemFunc()
     this.scroll()
     this.userExistfunc()
     this.userName()
+    this.cartCounter()
   }
 
   scroll(){
     window.scrollBy(0,0)
+  }
+
+
+  cartCounter(){
+    let cartProduct = localStorage.getItem('localCart')
+    if(cartProduct){
+      this.cartItem = JSON.parse(cartProduct).length
+    }
+    this.cartservice.cartData.subscribe((res : any)=>{
+      this.cartItem = res.length
+    })
   }
 
   cartItem:number=0;

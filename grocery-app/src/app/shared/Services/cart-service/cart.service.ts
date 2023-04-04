@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,9 @@ export class CartService {
   ngOnInit(){
     this.getProductId()
   }
+
+  cartData = new EventEmitter<[]>
+  cartTotal = new EventEmitter<any>
 
   productData(){
     return this.productsArray
@@ -94,7 +98,13 @@ export class CartService {
         localStorage.setItem('localCart' ,JSON.stringify(this.itemsCart))
       }
     }
+ 
+    this.cartData.emit(this.itemsCart)
   }
+
+
+
+
 
 
 }

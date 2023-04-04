@@ -45,7 +45,7 @@ export class LoginComponent {
       this.userservice.userLogin(this.loginFormValue).subscribe((User_login_res:any)=>{
         
       console.log("User_login_res",User_login_res);
-      localStorage.setItem("token" , User_login_res.data);
+      localStorage.setItem("token" , User_login_res.data.token);
       this.router.navigate(['/home'])
 
         

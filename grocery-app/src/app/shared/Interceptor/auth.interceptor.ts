@@ -16,13 +16,13 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
    let userToken = localStorage.getItem('token')
-   let token = userToken
-   console.log(token);
+  //  let token = userToken
+   console.log(userToken);
 
-   if(token){
+   if(userToken){
      let req = request.clone({
       setHeaders:{
-        TOKEN  : token  
+        token  : userToken  
      }
     })
     return next.handle(req)

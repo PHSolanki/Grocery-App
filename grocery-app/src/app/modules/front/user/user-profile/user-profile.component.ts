@@ -15,12 +15,13 @@ export class UserProfileComponent {
 
   public user: any;
   RegisterData:any
+  resData: any;
   
   constructor(private route: ActivatedRoute , private edituser: editUserService ) { }
 
   ngOnInit(): void {
-  
-    }
+    this.getUserDetails()  
+  }
 
     Profile =new FormGroup({
       first_name:new FormControl ("",Validators.required),
@@ -37,16 +38,32 @@ export class UserProfileComponent {
    
     Save_Profile(){
 
-      if(this.Profile.valid){
-   
+      if(this.Profile.valid){   
         console.log(this.Profile.value)
         this.edituser.editUser(this.Profile.value).subscribe((res)=>{
-          console.log(res);
-          
+          console.log(res);          
         })
            
       }
-     
+    }
+
+    getUserDetails(){
+      this.edituser.getUserDetails().subscribe((res)=>{
+        if(res){
+          this.resData = res.data;
+          console.log(this.resData);
+          this.Profile.setValue({
+           first_name: this.resData.first_name || "",
+           last_name:this.resData.last_name || '',
+           secondary_mobile_number: "",
+           secondary_email: "",
+           date_of_birth:"",
+           password: "",
+   
+          })
+        }
+        console.log(res);        
+      })
     }
 
 }

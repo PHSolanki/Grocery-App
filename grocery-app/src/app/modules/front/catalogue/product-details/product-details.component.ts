@@ -32,7 +32,7 @@ export class ProductDetailsComponent implements OnInit{
   }
 
   scroll(){
-    window.scrollTo(0,0);
+    window.scroll(0,0);
   }
 
   getValue() {
