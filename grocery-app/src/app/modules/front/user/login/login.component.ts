@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/Services/Login-service/login.service';
+import { ToastrService } from 'ngx-toastr';
 import { User_Login_Model } from 'src/data-type';
 
 
@@ -15,7 +16,7 @@ export class LoginComponent {
 
   loginFormValue:any
 
-  constructor(private userservice:UserService , private router:Router){}
+  constructor(private userservice:UserService , private router:Router , private toaster : ToastrService){}
 
   ngOnInit(){
     this.scroll()
@@ -47,10 +48,12 @@ export class LoginComponent {
       console.log("User_login_res",User_login_res);
       localStorage.setItem("token" , User_login_res.data.token);
       this.router.navigate(['/home'])
+      this.toaster.success('Login Successful')
 
         
       })
     }
+    
 
   }
 

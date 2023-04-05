@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from 'src/app/error/error.component';
 import { AuthGuard } from 'src/app/Guards/auth.guard';
 import { HomeComponent } from '../../../shared/components/home/home.component';
+import { AddAddressComponent } from './add-address/add-address.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { LoginComponent } from './login/login.component';
 import { ManageaddressComponent } from './manageaddress/manageaddress.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:'user-profile' ,canActivate:[AuthGuard], component:UserProfileComponent},
   {path:'orders' , canActivate:[AuthGuard], component:OrdersComponent},
   {path:'manageaddress' , canActivate:[AuthGuard] , component:ManageaddressComponent},
+  {path:'add-address' , canActivate:[AuthGuard] , component:AddAddressComponent},
   {path:'changepassword' , canActivate:[AuthGuard], component:ChangepasswordComponent},
   {path:'**',component:ErrorComponent}
 

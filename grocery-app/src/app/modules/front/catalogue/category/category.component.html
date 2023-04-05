@@ -17,7 +17,7 @@
 
 <!-- Start of Explore categories carousel  -->
 
-<carousel [autoplay]="true" [pauseOnHover]="true" [height]="300">
+<!-- <carousel [autoplay]="true" [pauseOnHover]="true" [height]="300">
 
   <div class="carousel-cell" *ngFor="let item of categories">
     <div class="card bg-warning-subtle p-3 m-2">
@@ -30,53 +30,26 @@
   </div>
 
 </carousel>
-<br><br><br><br><br>
+<br><br><br><br><br> -->
 
   <!-- End of Explore categories carousel  -->
+
+
+
+
+
+  <!-- API  category carousel -->
+
+  <carousel [autoplay]="true" [pauseOnHover]="true" [height]="300">
+
+    <div class="carousel-cell" *ngFor="let item of apiCategory">
+      <div class="card bg-warning-subtle p-3 m-2">
+        <a routerLink="/front/catalogue/product-list" ><img src="assets/fruits.jpg" alt="" width="120" height="120"/></a>
+        <div class="card-body text-center">
+          <p>{{item.title}}</p>
+          <small>{{item.id}}</small>
+        </div>
+      </div>
+    </div>
   
-
-      
- 
-
-              <!-- <div class="card-deck">
-                <div class="card">
-                  <img class="card-img-top" src="assets/fruits.jpg"  width="239" height="200" alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-title">Fruits</h5>
-                    <p class="card-text"></p>
-                    <p class="card-text"><small class="text-muted">20 Items</small></p>
-                  </div>
-                </div>
-                <div class="card">
-                  <img class="card-img-top" src="assets/vegetables.jpg" width="239" height="200" alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-title">Vegetables</h5>
-                    <p class="card-text"></p>
-                    <p class="card-text"><small class="text-muted">44 items</small></p>
-                  </div>
-                </div>
-                <div class="card">
-                  <img class="card-img-top" src="assets/coffee.jpg" width="239" height="200"alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-title">Coffee</h5>
-                    <p class="card-text"></p>
-                    <p class="card-text"><small class="text-muted">10 items</small></p>
-                  </div>
-                </div>
-                <div class="card">
-                    <img class="card-img-top" src="assets/tea.jpg" width="239" height="200"alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">Tea</h5>
-                      <p class="card-text"></p>
-                      <p class="card-text"><small class="text-muted">20 items</small></p>
-                    </div>
-                </div>
-                <div class="card">
-                  <img class="card-img-top" src="assets/meat.jpeg" width="239" height="200"alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-title">Meat</h5>
-                    <p class="card-text"></p>
-                    <p class="card-text"><small class="text-muted">40 items</small></p>
-                  </div>
-              </div>
-              </div> -->       
+  </carousel>

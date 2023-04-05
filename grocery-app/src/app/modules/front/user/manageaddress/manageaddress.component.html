@@ -11,178 +11,64 @@
 
 <div class="d-flex justify-content-start">
    
-    <app-profilenav></app-profilenav>
+  <app-profilenav></app-profilenav>
      
-      <div class="mx-5 d-flex justify-content-center">
-  
-        <form class="row g-5 m-lg-5 d-flex justify-content-center" [formGroup]="manage_Address" (ngSubmit)="Save_Address()">
-         
-          <div class="row g-2 ">
-  
-            <div class="col-md-5">
-  
-              <label for="inputfirstname" class="form-label">Address line 1</label>
-              <input type="text" formControlName="address_line_1" class="form-control" id="inputfirstname" placeholder="Enter address line ">
-            
-              <div *ngIf="get_Address.address_line_1.touched && get_Address.address_line_1.invalid" class="text-danger col-md-5">
-                <div *ngIf="get_Address.address_line_1.errors?.['required']" class="text-danger">Please Enter Address line</div>
-              </div>
-  
-            </div>
-  
-            <div class="col-md-5">
-  
-              <label for="inputlastname" class="form-label">Address line 2</label>
-              <input type="text" formControlName="address_line_2" class="form-control" id="inputlastname" placeholder="Enter Address line 2">
-              
-              <div *ngIf="get_Address.address_line_2.touched && get_Address.address_line_2.invalid" class="text-danger col-md-5">
-                <div *ngIf="get_Address.address_line_2.errors?.['required']" class="text-danger">Please Enter Address line 2</div>            
-              </div>
-              
-            </div>
-  
-          </div>
-  
-          <div class="row g-2">
-  
-            <div class="col-md-5">
-              <label for="inputEmail4" class="form-label">Area</label>
-              <input type="text" formControlName="area" class="form-control" id="inputEmail4" placeholder="Enter Area Name">
-              
-              <div *ngIf="get_Address.area.touched && get_Address.area.invalid" class="text-danger col-md-5">
-                <div *ngIf="get_Address.area.errors?.['required']" class="text-danger">Please Enter Area Name</div>
-              </div>
-  
-            </div>
-  
-            <div class="col-md-5">
-  
-              <label for="dob" class="form-label">City</label>
-              <input type="text" formControlName="city" class="form-control" id="dob" placeholder="Enter City name">
-              
-              <div *ngIf="get_Address.city.touched && get_Address.city.invalid" class="text-danger col-md-5">
-                <div *ngIf="get_Address.city.errors?.['required']" class="text-danger">Please Enter City Name</div>
-              </div>
-              
-            </div>
-  
-          </div>
-  
-          <div class="row g-2">
-  
-            <div class="col-md-5">
-  
-              <label for="inputEmail" class="form-label">State</label>
-              <input type="email" formControlName="state" class="form-control" id="inputEmail" placeholder="Enter Your State Name">
-              
-              <div *ngIf="get_Address.state.touched && get_Address.state.invalid" class="text-danger col-md-5">
-                <div *ngIf="get_Address.state.errors?.['required']" class="text-danger">Please Enter Your State Name</div>
-              </div>
-              
-            </div>
-  
-            <div class="col-md-5">
-  
-              <label for="alternatecontact" class="form-label">Country</label>
-              <input type="text" formControlName="country" class="form-control" id="alternatecontact" placeholder="Enter Your Country Name">
-              
-              <div *ngIf="get_Address.country.touched && get_Address.country.invalid" class="text-danger col-md-5">
-                <div *ngIf="get_Address.country.errors?.['required']" class="text-danger">Please Enter Your Country Name </div>
-              </div>
-              
-            </div>
+  <div class="mx-5 d-flex justify-content-center">    
+        
+    <div class="col-sm-10 my-5">
+        
+      <div class="container address my-5">
+        
+        <div class="d-flex">
 
-            <div class="col-md-5">
-  
-              <label for="alternatecontact" class="form-label">Postal Code</label>
-              <input type="text" formControlName="postal_code" class="form-control" id="alternatecontact" placeholder="Enter Your Postal Code">
-                
-              <div *ngIf="get_Address.postal_code.touched && get_Address.postal_code.invalid" class="text-danger col-md-5">
-                <div *ngIf="get_Address.postal_code.errors?.['required']" class="text-danger">Please Enter Postal Code</div>
-              </div>
-                
-            </div>
-
-            <div class="col-md-5">
-  
-              <label for="alternatecontact" class="form-label">landmark</label>
-              <input type="text" formControlName="landmark" class="form-control" id="alternatecontact" placeholder="Enter your landmark">
-                
-              <div *ngIf="get_Address.landmark.touched && get_Address.landmark.invalid" class="text-danger col-md-5">
-                <div *ngIf="get_Address.landmark.errors?.['required']" class="text-danger">Please Enter your Landmark</div>
-              </div>
-                
-            </div>
-
-            <div class="col-md-5">
-  
-                <label for="alternatecontact" class="form-label">Tag</label>
-                <input type="text" formControlName="tag" class="form-control" id="alternatecontact" placeholder="Enter Tag">
-                
-                <div *ngIf="get_Address.tag.touched && get_Address.tag.invalid" class="text-danger col-md-5">
-                  <div *ngIf="get_Address.tag.errors?.['required']" class="text-danger">Please Enter Tag</div>
-                </div>
-                
-            </div>
-  
-          </div> 
-  
-          <div class="row g-2 d-flex justify-content-center ">
-            <div class="col-md-5">
-              <button type="submit" [disabled]="!manage_Address.valid" class="btn btn-success">Save</button>
+          <div class="card ms-3" *ngFor="let item of user_addresses">
+            <div class="card-body">
+              <h5 class="card-title"><b>{{item.tag}}</b></h5>
+              <p class="card-text"><b>Address Line 1 </b> :{{item.address_line_1}}</p>
+              <p class="card-text"><b>Address Line 2 :</b>{{item.address_line_2}}</p>
+              <p class="card-text"><b>Area :</b>{{item.area}}</p>
+              <p class="card-text"><b>City :</b>{{item.city}}</p>
+              <p class="card-text"><b>State :</b>{{item.state}}</p>
+              <p class="card-text"><b>Country :</b>{{item.country}}</p>
+              <p class="card-text"><b>Postal Code :</b>{{item.postal_code}}</p>
+              <ul class=" d-flex justify-content-between align-items-center my-3" style="list-style-type: none;">
+                <button type="button" class="btn btn-outline-secondary">Deliver Here</button>
+                <li class="mx-2"><a href=""><i class="fa-solid fa-trash"></i></a></li>
+                <li class="mx-2"><a href=""><i class="fa-regular fa-pen-to-square"></i></a></li>
+              </ul>
             </div>
           </div>
-  
-        </form>
-  
-      </div>
-  
-  </div>
-  
 
-    <!-- <div class="col-sm-10 my-5">
-        
-        <div class="conatainer address my-5">
-        
-        
-            <div class="d-flex">
-                <div class="card ms-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Default : Home</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <ul class=" d-flex justify-content-between align-items-center my-3" style="list-style-type: none;">
-                            <button type="button" class="btn btn-outline-secondary">Deliver Here</button>
-                            <li class="mx-2"><a href=""><i class="fa-solid fa-trash"></i></a></li>
-                            <li class="mx-2"><a href=""><i class="fa-regular fa-pen-to-square"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card mx-5">
-                    <div class="card-body">
-                        <h5 class="card-title">Office</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <ul class=" d-flex justify-content-between align-items-center my-3" style="list-style-type: none;">
-                            <button type="button" class="btn btn-outline-secondary">Deliver Here</button>
-                            <li class="mx-2"><a href=""><i class="fa-solid fa-trash"></i></a></li>
-                            <li class="mx-2"><a href=""><i class="fa-regular fa-pen-to-square"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-        
-                <div class="card me-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Home</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <ul class=" d-flex justify-content-between align-items-center my-3" style="list-style-type: none;">
-                            <button type="button" class="btn btn-outline-secondary">Deliver Here</button>
-                            <li class="mx-2"><a href=""><i class="fa-solid fa-trash"></i></a></li>
-                            <li class="mx-2"><a href=""><i class="fa-regular fa-pen-to-square"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-        
+          <!-- <div class="card mx-5">
+            <div class="card-body">
+              <h5 class="card-title">Office</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <ul class=" d-flex justify-content-between align-items-center my-3" style="list-style-type: none;">
+                <button type="button" class="btn btn-outline-secondary">Deliver Here</button>
+                <li class="mx-2"><a href=""><i class="fa-solid fa-trash"></i></a></li>
+                <li class="mx-2"><a href=""><i class="fa-regular fa-pen-to-square"></i></a></li>
+              </ul>
             </div>
+          </div>
+        
+          <div class="card me-3">
+            <div class="card-body">
+              <h5 class="card-title">Home</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <ul class=" d-flex justify-content-between align-items-center my-3" style="list-style-type: none;">
+                <button type="button" class="btn btn-outline-secondary">Deliver Here</button>
+                <li class="mx-2"><a href=""><i class="fa-solid fa-trash"></i></a></li>
+                <li class="mx-2"><a href=""><i class="fa-regular fa-pen-to-square"></i></a></li>
+              </ul>
+            </div>
+          </div> -->
+        
         </div>
 
-    </div> -->
+      </div>
 
+    </div>
+
+  </div>
+
+</div>

@@ -9,49 +9,28 @@ import { editUserService } from 'src/app/shared/Services/Edit user-Service/editu
 })
 export class ManageaddressComponent {
 
-
-  addresses !:any | null []
-
   constructor(private manageaddress : editUserService){}
 
   ngOnInit(){
     this.scroll()
+    this.manage_addressFunc()
   }
   scroll(){
     window.scrollBy(0,0)
   }
 
-  manage_Address = new FormGroup({
-    address_line_1 : new FormControl('' , [Validators.required]),
-    address_line_2 : new FormControl('' , [Validators.required]),
-    area : new FormControl('' , [Validators.required]),
-    city : new FormControl('' , [Validators.required]),
-    state : new FormControl('' , [Validators.required]),
-    country : new FormControl('' , [Validators.required]),
-    postal_code : new FormControl('' , [Validators.required]),
-    landmark : new FormControl('' , [Validators.required]),
-    tag : new FormControl('' ,[Validators.required]),
-  })
+  user_addresses:any=[]
 
-  Save_Address(){
+  manage_addressFunc(){
+    this.manageaddress.getUserDetails().subscribe((res)=>{
+      console.log(res);
+      this.user_addresses=res.data.addresses
 
-    if(this.manage_Address.valid){
+      console.log(this.user_addresses);
+      
 
-      this.manageaddress.manage_address(this.manage_Address.value).subscribe((res)=>{
-        console.log((res));
-        
-        localStorage.setItem('Address' , JSON.stringify(res.data))
-
-        this.addresses=JSON.parse(localStorage.getItem('Address')!)
-        console.log(this.addresses);
-        
-      })
-    }
-
-
+      
+    })
   }
 
-  get get_Address(){
-    return this.manage_Address.controls
   }
-}

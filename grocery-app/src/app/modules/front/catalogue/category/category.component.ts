@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router,ActivatedRoute } from '@angular/router';
+import { CategoryService } from 'src/app/shared/Services/Category-service/category.service';
 
 @Component({
   selector: 'app-category',
@@ -8,25 +8,35 @@ import { Router,ActivatedRoute } from '@angular/router';
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent {
-  constructor(private router:Router , private activatedroute:ActivatedRoute){}
 
-  
+  constructor(private router:Router , private activatedroute:ActivatedRoute , private categoryservice : CategoryService){}  
 
   food: any;
-
   category:any;
   category_name:any;
+  apiCategory:any = []
 
   ngOnInit(){
     this.category_name=this.activatedroute.snapshot.paramMap.get('name');
     this.category=this.categories.find(x=>x.name==this.category_name)   
 
     this.scroll()
+    this.getAllCategory()
   }
 
-scroll(){
-  window.scroll(0,0)
-}
+  scroll(){
+    window.scroll(0,0)
+  }
+
+  getAllCategory(){
+    this.categoryservice.getAllCategory().subscribe((res)=>{
+      console.log(res);
+      this.apiCategory = res.data
+      console.log(this.apiCategory);    
+    })
+  }
+
+  
 
   navCategories=[
     {name:'All'},

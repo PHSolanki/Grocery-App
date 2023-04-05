@@ -15,6 +15,7 @@ import { ProfilenavComponent } from './profilenav/profilenav.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { ManageaddressComponent } from './manageaddress/manageaddress.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddAddressComponent } from './add-address/add-address.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     ManageaddressComponent,
     UserProfileComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    AddAddressComponent
   ],
   imports: [
     CommonModule,

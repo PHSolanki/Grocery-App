@@ -26,15 +26,15 @@ export class editUserService {
 
   editUser(data:any){
     try {
-      return this.http.put<any>(this.baseUrl+this.edit_user, data)
+      return this.http.put<any>(this.baseUrl+this.edit_user, data , {headers: new HttpHeaders({'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*'})})
     } catch (error:any) {
       return throwError(() => new Error(error))
     }
   }
 
-  manage_address(data:any){
+  add_addressFunc(data:any){
     try{
-      return this.http.post<any>(this.baseUrl+this.add_address,data)
+      return this.http.post<any>(this.baseUrl+this.add_address,data , {headers: new HttpHeaders({'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*'})})
     }catch (error:any){
       return throwError(()=>new Error(error))
     }
@@ -47,4 +47,5 @@ export class editUserService {
       return throwError(()=>new Error(error))
     }
   }
+  
 }

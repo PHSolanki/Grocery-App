@@ -15,7 +15,7 @@ export class UserProfileComponent {
 
   public user: any;
   RegisterData:any
-  resData: any;
+  resetData: any;
   
   constructor(private route: ActivatedRoute , private edituser: editUserService ) { }
 
@@ -50,16 +50,15 @@ export class UserProfileComponent {
     getUserDetails(){
       this.edituser.getUserDetails().subscribe((res)=>{
         if(res){
-          this.resData = res.data;
-          console.log(this.resData);
+          this.resetData = res.data;
+          console.log(this.resetData);
           this.Profile.setValue({
-           first_name: this.resData.first_name || "",
-           last_name:this.resData.last_name || '',
+           first_name: this.resetData.first_name || "",
+           last_name:this.resetData.last_name || '',
            secondary_mobile_number: "",
            secondary_email: "",
            date_of_birth:"",
-           password: "",
-   
+           password: "",   
           })
         }
         console.log(res);        

@@ -6,5 +6,7 @@ export const environment = {
     all_category:"category/get-all-categories",
     edit_user :"customer/update-customer",
     add_address : "customer/add-customer-address",
-    customers_details : "customer/customer-details"
+    customers_details : "customer/customer-details",
+    get_all_categories : "category/get-all-categories",
+    product_by_categoryId : "product/get-product-by-category-id"
 };

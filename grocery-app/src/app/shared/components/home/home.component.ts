@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from '../../Services/cart-service/cart.service';
+import { CategoryService } from '../../Services/Category-service/category.service';
 import { ProductDataService } from '../../Services/Product Data-Service/product-data.service';
 
 
@@ -12,7 +14,7 @@ export class HomeComponent {
 
   productsArray!:any[]
 
-  constructor(private cartservice:CartService , private productservice:ProductDataService){  }
+  constructor(private cartservice:CartService , private productservice:ProductDataService , private categoryservice : CategoryService , private router : Router){  }
 
   ngOnInit(){
     this.scroll()
@@ -64,6 +66,14 @@ recentlyAdded=[
   {title:'Refundable',source:'assets/Capture2.PNG' ,description:'If your items have damagewe agree to refund it'},
   {title:'Free delivery',source:'assets/Capture3.PNG' ,description:'Do purchase over $50 and get free delivery anywhere'}
  ]
+
+ getAllCategory(){
+  this.categoryservice.getAllCategory().subscribe((res)=>{
+    console.log(res);    
+  })
+  this.router.navigate(['/front/catalogue/category'])
+ }
+
 
  addToCart(category: any){
   this.cartservice.addToCart(category)
