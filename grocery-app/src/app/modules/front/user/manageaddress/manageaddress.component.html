@@ -1,68 +1,42 @@
 <br>
 <div class="card border-0 text-black">
-    <img src="/assets/product_list_background.jpg" alt="" class="img-fluid opacity-25">
-    <div class="card-img-overlay text-center my-3 d-flex justify-content-center align-items-center">
-        <div>
-            <p id="product_list_text" class="card-title fs-1 fw-bolder">Manage Address</p>
-        </div>
+  <img src="/assets/product_list_background.jpg" alt="" class="img-fluid opacity-25">
+  <div class="card-img-overlay text-center my-3 d-flex justify-content-center align-items-center">
+    <div>
+      <p id="product_list_text" class="card-title fs-1 fw-bolder">Manage Address</p>
     </div>
+  </div>
 </div> 
-
-
+  
+  
 <div class="d-flex justify-content-start">
-   
+    
   <app-profilenav></app-profilenav>
-     
-  <div class="mx-5 d-flex justify-content-center">    
-        
-    <div class="col-sm-10 my-5">
-        
-      <div class="container address my-5">
-        
-        <div class="d-flex">
 
-          <div class="card ms-3" *ngFor="let item of user_addresses">
-            <div class="card-body">
-              <h5 class="card-title"><b>{{item.tag}}</b></h5>
-              <p class="card-text"><b>Address Line 1 </b> :{{item.address_line_1}}</p>
-              <p class="card-text"><b>Address Line 2 :</b>{{item.address_line_2}}</p>
-              <p class="card-text"><b>Area :</b>{{item.area}}</p>
-              <p class="card-text"><b>City :</b>{{item.city}}</p>
-              <p class="card-text"><b>State :</b>{{item.state}}</p>
-              <p class="card-text"><b>Country :</b>{{item.country}}</p>
-              <p class="card-text"><b>Postal Code :</b>{{item.postal_code}}</p>
-              <ul class=" d-flex justify-content-between align-items-center my-3" style="list-style-type: none;">
-                <button type="button" class="btn btn-outline-secondary">Deliver Here</button>
-                <li class="mx-2"><a href=""><i class="fa-solid fa-trash"></i></a></li>
-                <li class="mx-2"><a href=""><i class="fa-regular fa-pen-to-square"></i></a></li>
-              </ul>
+  <div class="container mt-3">
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+      <div class="col" *ngFor="let item of user_addresses;let i=index">
+        <div class="card shadow-sm border border-success" >
+          <div class="card-body">
+            <h5 class="card-title fs-5 text-success">{{item.tag}}</h5>
+            <p class="card-text fs-6">{{item.address_line_1}}</p>
+            <p class="card-text fs-6">{{item.address_line_2}}</p>
+            <p class="card-text fs-6">Country: {{item.country}}</p>
+            <p class="card-text fs-6">State: {{item.state}}</p>
+            <p class="card-text fs-6">City: {{item.city}}</p>
+            <p class="card-text fs-6">Landmark : {{item.landmark}}</p>
+            <p class="card-text fs-6">Postal Code : {{item.postal_code}}</p>
+              
+              
+            <div class="d-flex text-center bg-transparent ">
+              <button class="btn btn-success btn-sm mx-2">Deliver Here</button>
+              <button class="btn btn-success btn-sm mx-2" ><i class="fa-solid fa-trash"></i></button>
+              <button class="btn btn-success btn-sm mx-2" [routerLink]="['../edit-address',item.id]"><i class="fa-regular fa-pen-to-square"></i></button>
             </div>
+
           </div>
 
-          <!-- <div class="card mx-5">
-            <div class="card-body">
-              <h5 class="card-title">Office</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <ul class=" d-flex justify-content-between align-items-center my-3" style="list-style-type: none;">
-                <button type="button" class="btn btn-outline-secondary">Deliver Here</button>
-                <li class="mx-2"><a href=""><i class="fa-solid fa-trash"></i></a></li>
-                <li class="mx-2"><a href=""><i class="fa-regular fa-pen-to-square"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        
-          <div class="card me-3">
-            <div class="card-body">
-              <h5 class="card-title">Home</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <ul class=" d-flex justify-content-between align-items-center my-3" style="list-style-type: none;">
-                <button type="button" class="btn btn-outline-secondary">Deliver Here</button>
-                <li class="mx-2"><a href=""><i class="fa-solid fa-trash"></i></a></li>
-                <li class="mx-2"><a href=""><i class="fa-regular fa-pen-to-square"></i></a></li>
-              </ul>
-            </div>
-          </div> -->
-        
         </div>
 
       </div>
@@ -70,5 +44,6 @@
     </div>
 
   </div>
-
+  
 </div>
+

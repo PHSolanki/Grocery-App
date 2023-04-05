@@ -8,5 +8,8 @@ export const environment = {
     add_address : "customer/add-customer-address",
     customers_details : "customer/customer-details",
     get_all_categories : "category/get-all-categories",
-    product_by_categoryId : "product/get-product-by-category-id"
+    product_by_categoryId : "product/get-product-by-category-id",
+    delete_customer_address :"customer/delete-customer-address",
+    update_customer_address :"customer/update-customer-address",
+    encryption:'encryption'
 };

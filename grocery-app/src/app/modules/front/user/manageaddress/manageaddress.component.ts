@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { editUserService } from 'src/app/shared/Services/Edit user-Service/edituser.service';
 
 @Component({
@@ -9,9 +9,10 @@ import { editUserService } from 'src/app/shared/Services/Edit user-Service/editu
 })
 export class ManageaddressComponent {
 
-  constructor(private manageaddress : editUserService){}
-
+  constructor(private manageaddress : editUserService , private router:Router){}
+  
   ngOnInit(){
+    
     this.scroll()
     this.manage_addressFunc()
   }
@@ -26,11 +27,27 @@ export class ManageaddressComponent {
       console.log(res);
       this.user_addresses=res.data.addresses
 
-      console.log(this.user_addresses);
-      
-
-      
+      console.log("user_addresses",this.user_addresses);    
     })
   }
 
+  deleteCustomerAddress(data:any){
+    this.manageaddress.deleteCustomerAddress(data.id).subscribe((res)=>{
+      console.log(res);
+    })
+    console.log(data);
+    
   }
+
+  // updateCustomerAddress(data:any){
+
+    
+  //   this.manageaddress.updateCustomerAddress(data).subscribe((res)=>{
+  //     console.log("res",res);
+  //     this.router.navigate(['/front/user/add-address'])
+      
+  //   })
+    
+  // }
+
+}

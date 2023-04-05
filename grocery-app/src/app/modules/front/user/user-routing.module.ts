@@ -22,6 +22,7 @@ const routes: Routes = [
   {path:'orders' , canActivate:[AuthGuard], component:OrdersComponent},
   {path:'manageaddress' , canActivate:[AuthGuard] , component:ManageaddressComponent},
   {path:'add-address' , canActivate:[AuthGuard] , component:AddAddressComponent},
+  {path:'edit-address/:id' , canActivate:[AuthGuard] , component:AddAddressComponent},
   {path:'changepassword' , canActivate:[AuthGuard], component:ChangepasswordComponent},
   {path:'**',component:ErrorComponent}
 
