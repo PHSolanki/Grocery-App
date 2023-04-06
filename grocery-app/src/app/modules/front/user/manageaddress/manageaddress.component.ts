@@ -9,19 +9,20 @@ import { editUserService } from 'src/app/shared/Services/Edit user-Service/editu
 })
 export class ManageaddressComponent {
 
+  user_addresses:any=[]
+
   constructor(private manageaddress : editUserService , private router:Router){}
   
   ngOnInit(){
-    
     this.scroll()
     this.manage_addressFunc()
   }
+
   scroll(){
     window.scrollBy(0,0)
   }
 
-  user_addresses:any=[]
-
+  
   manage_addressFunc(){
     this.manageaddress.getUserDetails().subscribe((res)=>{
       console.log(res);
@@ -38,16 +39,4 @@ export class ManageaddressComponent {
     console.log(data);
     
   }
-
-  // updateCustomerAddress(data:any){
-
-    
-  //   this.manageaddress.updateCustomerAddress(data).subscribe((res)=>{
-  //     console.log("res",res);
-  //     this.router.navigate(['/front/user/add-address'])
-      
-  //   })
-    
-  // }
-
 }

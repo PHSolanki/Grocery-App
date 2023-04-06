@@ -11,26 +11,33 @@ import { EncryptionService } from 'src/app/shared/Services/encryption/encryption
 })
 export class AddAddressComponent {
 
-  addresses !:any | null []
-
   constructor(private add_address : editUserService,private route:ActivatedRoute,private _encryptionservice:EncryptionService){}
   
   Edit_Address_Id:any
-
   btn_name="ADD Address"
+  encrypted_data:any
+  image_name="Add Address"
+  user_address:any
+
   ngOnInit(){
-    
+    this.getAddressId()  
+    this.scroll()
+    this.setAddressValue()
+  }
+
+  scroll(){
+    window.scrollBy(0,0)
+  }
+
+  getAddressId(){
     this.route.paramMap.subscribe((params)=>{
       this.Edit_Address_Id=params.get('id')
       console.log("Edit_Address_Id",this.Edit_Address_Id)
       if(this.Edit_Address_Id){
         this.btn_name="Edit Address"
+        this.image_name="Update Address"
       }
     })
-    this.scroll()
-  }
-  scroll(){
-    window.scrollBy(0,0)
   }
 
   add_Address = new FormGroup({
@@ -45,32 +52,33 @@ export class AddAddressComponent {
     tag : new FormControl('' ,[Validators.required]),
   })
 
-  encryption_data:any
+  
   
   Save_Address(){
+
     console.log("this.add_Address.value",this.add_Address.value)
+
     if(!this.Edit_Address_Id){
-    if(this.add_Address.valid){
 
-      this.add_address.add_addressFunc(this.add_Address.value).subscribe((res)=>{
-        console.log((res));
-        
-        localStorage.setItem('Address' , JSON.stringify(res.data))
+      if(this.add_Address.valid){
 
-        this.addresses=JSON.parse(localStorage.getItem('Address')!)
-        console.log(this.addresses);
+        this.add_address.add_addressFunc(this.add_Address.value).subscribe((res)=>{
+          console.log((res));
         
-      })
-    }
-  }else{
+        })
+      }
+      
+    }else{
+
     this._encryptionservice.Encryption(this.Edit_Address_Id).subscribe({next:(encryption_res)=>{
       console.log("encryption_res",encryption_res)
-      this.encryption_data=encryption_res.data
-       console.log("encryption_data",this.encryption_data)
-       this.updateCustomerAddress(this.encryption_data)
+      this.encrypted_data=encryption_res.data
+       console.log("encryption_data",this.encrypted_data)
+       this.updateCustomerAddress(this.encrypted_data)
     },error:(encryption_error)=>{
       console.log("encryption_error",encryption_error)
     }})
+
   }
 
   }
@@ -79,14 +87,38 @@ export class AddAddressComponent {
     return this.add_Address.controls
   }
 
-  updateCustomerAddress(encryption:any){
+  updateCustomerAddress(encrypted_id:any){
 
-    this.add_address.updateCustomerAddress(this.add_Address.value,encryption).subscribe((res)=>{
+    this.add_address.updateCustomerAddress(this.add_Address.value,encrypted_id).subscribe((res)=>{
       console.log("res",res);
-      // this.router.navigate(['/front/user/add-address'])
-      // this.btn_name="ADD Address"
+
     })
     
-    
+  }
+
+  setAddressValue(){
+
+    this.add_address.getUserDetails().subscribe((res)=>{
+      
+      this.user_address=res.data.addresses;
+
+      this.user_address=this.user_address.filter((ele:any) => ele.id==this.Edit_Address_Id);
+
+      console.log(this.user_address[0].address_line_1);
+
+      this.add_Address.setValue({
+
+        address_line_1: this.user_address[0].address_line_1,
+        address_line_2: this.user_address[0].address_line_2,
+        area: this.user_address[0].area,
+        country: this.user_address[0].country,
+        state: this.user_address[0].state,
+        city: this.user_address[0].city,
+        postal_code: this.user_address[0].postal_code,
+        landmark: this.user_address[0].landmark,
+        tag: this.user_address[0].tag
+
+      })
+    })
   }
 }
