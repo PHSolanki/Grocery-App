@@ -60,7 +60,7 @@ export class editUserService {
 
   deleteCustomerAddress(data:any){
     try{
-      return this.http.delete(this.baseUrl+this.delete_customer_address ,data )
+      return this.http.delete(this.baseUrl+this.delete_customer_address ,{headers: new HttpHeaders({'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*','address_id':data})} )
     }catch(error:any){
       return throwError(()=>new Error(error))
     }

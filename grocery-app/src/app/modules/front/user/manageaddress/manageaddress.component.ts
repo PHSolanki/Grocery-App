@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { editUserService } from 'src/app/shared/Services/Edit user-Service/edituser.service';
+import { EncryptionService } from 'src/app/shared/Services/encryption/encryption.service';
 
 @Component({
   selector: 'app-manageaddress',
@@ -10,8 +11,9 @@ import { editUserService } from 'src/app/shared/Services/Edit user-Service/editu
 export class ManageaddressComponent {
 
   user_addresses:any=[]
+  encrypted_address_id:any
 
-  constructor(private manageaddress : editUserService , private router:Router){}
+  constructor(private manageaddress : editUserService , private router:Router , private _encryptionservice : EncryptionService){}
   
   ngOnInit(){
     this.scroll()
@@ -32,11 +34,26 @@ export class ManageaddressComponent {
     })
   }
 
-  deleteCustomerAddress(data:any){
-    this.manageaddress.deleteCustomerAddress(data.id).subscribe((res)=>{
-      console.log(res);
+  deleteCustomerAddress(address_id:any ,i:any ){
+   
+    this._encryptionservice.Encryption(address_id.toString()).subscribe((res)=>{
+      console.log((res));
+      
+      this.encrypted_address_id = res.data
+      
+     
+      this.manageaddress.deleteCustomerAddress(this.encrypted_address_id).subscribe((res)=>{
+        console.log(res);
+      })  
+      
+      // let index = this.user_addresses.findIndex((ele:any)=>ele.index==address_id)
+
+      this.user_addresses.splice(i,1)
+
     })
-    console.log(data);
+
+
+
     
   }
 }

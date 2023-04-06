@@ -23,6 +23,7 @@
             <h5 class="card-title fs-5 text-success">{{item.tag}}</h5>
             <p class="card-text fs-6">{{item.address_line_1}}</p>
             <p class="card-text fs-6">{{item.address_line_2}}</p>
+            <p class="card-text fs-6">Area : {{item.area}}</p>
             <p class="card-text fs-6">Country: {{item.country}}</p>
             <p class="card-text fs-6">State: {{item.state}}</p>
             <p class="card-text fs-6">City: {{item.city}}</p>
@@ -32,7 +33,7 @@
               
             <div class="d-flex text-center bg-transparent ">
               <button class="btn btn-success btn-sm mx-2">Deliver Here</button>
-              <button class="btn btn-success btn-sm mx-2" ><i class="fa-solid fa-trash"></i></button>
+              <button class="btn btn-success btn-sm mx-2" (click)="deleteCustomerAddress(item.id,i)" ><i class="fa-solid fa-trash"></i></button>
               <button class="btn btn-success btn-sm mx-2" [routerLink]="['../edit-address',item.id]" ><i class="fa-regular fa-pen-to-square"></i></button>
             </div>
 

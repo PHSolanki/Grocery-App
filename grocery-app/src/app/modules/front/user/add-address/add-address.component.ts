@@ -72,8 +72,10 @@ export class AddAddressComponent {
 
     this._encryptionservice.Encryption(this.Edit_Address_Id).subscribe({next:(encryption_res)=>{
       console.log("encryption_res",encryption_res)
+
       this.encrypted_data=encryption_res.data
        console.log("encryption_data",this.encrypted_data)
+       
        this.updateCustomerAddress(this.encrypted_data)
     },error:(encryption_error)=>{
       console.log("encryption_error",encryption_error)
