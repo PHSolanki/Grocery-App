@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/shared/Services/cart-service/cart.service';
+import { EncryptionService } from 'src/app/shared/Services/encryption/encryption.service';
 import { ProductDataService } from 'src/app/shared/Services/Product Data-Service/product-data.service';
 
 @Component({
@@ -11,18 +12,21 @@ import { ProductDataService } from 'src/app/shared/Services/Product Data-Service
 })
 export class ProductDetailsComponent implements OnInit{
 
-  constructor(private activatedroute:ActivatedRoute , private toast:ToastrService , private cartservice:CartService ,private productservice:ProductDataService){  }
+  constructor(private activatedroute:ActivatedRoute , private _encryptionservice:EncryptionService , private cartservice:CartService ,private productservice:ProductDataService){  }
 
   value:any;
   itemsCart:any=[];
   product: any;
   productId: any;
   productsArray!:any[]
+  Product_Id:any
   
 
   ngOnInit(): void{
 
     this.scroll()
+    this.getproductId()
+    this.getproductById()
 
     this.productsArray = this.productservice.productsArray
 
@@ -39,6 +43,14 @@ export class ProductDetailsComponent implements OnInit{
     console.log(this.value);
   }
 
+  getproductId(){
+    this.activatedroute.paramMap.subscribe((params)=>{
+      this.Product_Id=params.get('name')
+      console.log("category id",this.Product_Id)
+  })
+}
+
+
   increment(product: any){
     product.quantity=product.quantity+1;
   }
@@ -54,5 +66,30 @@ export class ProductDetailsComponent implements OnInit{
   addToCart(category: any){
     this.cartservice.addToCart(category)
   }
+
+  encrypted_Product_Id:any
+  product_Data:any
+
+  getproductById(){
+
+    this._encryptionservice.Encryption(this.Product_Id).subscribe((res)=>{
+      console.log(res);
+
+      this.encrypted_Product_Id=res.data
+
+      this.productservice.productById(this.encrypted_Product_Id).subscribe((res)=>{
+        console.log(res);
+
+        this.product_Data=res.data
+
+        console.log(this.product_Data);
+        
+        
+      })
+      
+    })
+  }
+
+
 
 }

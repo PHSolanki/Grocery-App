@@ -54,8 +54,9 @@
   </div>
 </nav>
 
-<!-- featured product cards -->
-<carousel [autoplay]="true" [pauseOnHover]="true" [height]="500">
+<!-- static featured product cards -->
+
+<!-- <carousel [autoplay]="true" [pauseOnHover]="true" [height]="500">
 
       <div class="carousel-cell" *ngFor="let item of productsArray">
           <div class="card m-2">
@@ -76,6 +77,32 @@
           </div>
       </div>
  
+</carousel>
+<br> -->
+
+<!-- API fetured Products Cards -->
+
+<carousel [autoplay]="true" [pauseOnHover]="true" [height]="500">
+
+  <div class="carousel-cell" *ngFor="let item of apiProductsArray">
+      <div class="card m-2">
+          <img class="card-img-top" src="assets/topsells1.PNG" routerLink="/front/catalogue/product-details/{{item.id}}" height="100px" width="100px" />
+          <div class="card-body" >
+              <h5 class="card-title">{{item.title}}</h5>
+              <p class="card-text">{{item.short_description}}</p>
+              <ul class="list-unstyled list-inline my-2">
+                  <li class="list-inline-item mx-0"><i class="fas fa-star text-success"></i></li>
+                  <li class="list-inline-item mx-0"><i class="fas fa-star text-success"></i></li>
+                  <li class="list-inline-item mx-0"><i class="fas fa-star text-success"></i></li>
+                  <li class="list-inline-item mx-0"><i class="fas fa-star text-success"></i></li>
+                  <li class="list-inline-item mx-0"><i class="fas fa-star-half-alt text-success"></i></li>
+              </ul>
+              <p class="price mb-0">{{item.amount | currency: 'USD'}}</p>
+              <button class="btn btn-success" (click)="addToCart(item)"><i class="fas fa-shopping-cart">Add</i></button>
+            </div>
+      </div>
+  </div>
+
 </carousel>
 <br>
 

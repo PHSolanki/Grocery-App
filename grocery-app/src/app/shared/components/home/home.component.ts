@@ -13,11 +13,13 @@ import { ProductDataService } from '../../Services/Product Data-Service/product-
 export class HomeComponent {
 
   productsArray!:any[]
+  apiProductsArray:any=[]
 
   constructor(private cartservice:CartService , private productservice:ProductDataService , private categoryservice : CategoryService , private router : Router){  }
 
   ngOnInit(){
     this.scroll()
+    this.getAllProducts()
 
     this.productsArray = this.productservice.productsArray
   }
@@ -72,6 +74,18 @@ recentlyAdded=[
     console.log(res);    
   })
   this.router.navigate(['/front/catalogue/category'])
+ }
+
+
+ getAllProducts(){
+  this.productservice.getAllProducts().subscribe((res)=>{
+
+    console.log(res);
+
+    this.apiProductsArray= res.data
+    console.log("apiproducts array" , this.apiProductsArray);
+    
+  })
  }
 
 

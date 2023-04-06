@@ -44,7 +44,7 @@
 
     <div class="carousel-cell" *ngFor="let item of apiCategory">
       <div class="card bg-warning-subtle p-3 m-2">
-        <a routerLink="/front/catalogue/product-list" ><img src="assets/fruits.jpg" alt="" width="120" height="120"/></a>
+        <a routerLink="/front/catalogue/product-list/{{item.id}}" ><img src="assets/fruits.jpg" alt="" width="120" height="120"/></a>
         <div class="card-body text-center">
           <p>{{item.title}}</p>
           <small>{{item.id}}</small>

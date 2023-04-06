@@ -1,6 +1,45 @@
   <section class="container sproduct my-5 pt-5">
     <div class="row mt-5">
       <div class="col-lg-5 col-md-12 col-12">
+        <img class="img-fluid w-100" src="" alt="">
+      </div>
+      <div class="col-lg-6 col-md-12 col-12">
+        <h3 class="py-4">{{product_Data.title}}</h3>
+        <h6>1Kg. Price </h6>
+        
+          <span>Reviews</span>
+          <i class="fas fa-star fa-sm text-primary" title="Bad"></i>
+          <i class="fas fa-star fa-sm text-primary" title="Poor"></i>
+          <i class="fas fa-star fa-sm text-primary" title="OK"></i>
+          <i class="fas fa-star fa-sm text-primary" title="Good"></i>
+          <i class="far fa-star fa-sm text-primary" title="Excellent"></i>
+          <br>
+         
+        
+
+          <div class="button my-5 p-2">
+            <button class="btn-secondary" (click)="decrement(product_Data)">-</button>
+            <span></span>
+            <button class="btn-secondary" (click)="increment(product_Data)">+</button>
+          </div>
+          <h3 class="my-4">Price : {{product_Data.amount | currency:'USD'}} </h3>
+       
+          
+        <!-- <i class="far fa-heart"></i> -->
+        <button class="btn btn-success w-100" (click)="addToCart(product)">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="my-5 pt-5 p-4">
+    <h3>Product Details</h3>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nam sunt nesciunt, aperiam esse dignissimos porro praesentium quae labore amet eveniet impedit magnam sint officiis id aut nihil in deleniti. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ullam, assumenda eveniet quo expedita et nulla saepe voluptates nesciunt amet cupiditate nostrum necessitatibus quibusdam iusto cumque dolores fuga est porro! Eaque, iusto voluptate. Velit accusantium hic aliquam! Deleniti sit exercitationem quod facere odio, expedita officia animi dolore accusamus, similique ad sequi omnis voluptates! Quos laborum vero eligendi, blanditiis maxime et!</p>
+  </div>
+
+
+  <!-- <section class="container sproduct my-5 pt-5">
+    <div class="row mt-5">
+      <div class="col-lg-5 col-md-12 col-12">
         <img class="img-fluid w-100" src="{{product.source}}" alt="">
       </div>
       <div class="col-lg-6 col-md-12 col-12">
@@ -25,16 +64,11 @@
           <h3 class="my-4">Price : {{product.price * product.quantity }} $</h3>
        
           
-        <!-- <i class="far fa-heart"></i> -->
+     
         <button class="btn btn-success w-100" (click)="addToCart(product)">Add to Cart</button>
       </div>
     </div>
-  </section>
-
-  <div class="my-5 pt-5 p-4">
-    <h3>Product Details</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nam sunt nesciunt, aperiam esse dignissimos porro praesentium quae labore amet eveniet impedit magnam sint officiis id aut nihil in deleniti. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ullam, assumenda eveniet quo expedita et nulla saepe voluptates nesciunt amet cupiditate nostrum necessitatibus quibusdam iusto cumque dolores fuga est porro! Eaque, iusto voluptate. Velit accusantium hic aliquam! Deleniti sit exercitationem quod facere odio, expedita officia animi dolore accusamus, similique ad sequi omnis voluptates! Quos laborum vero eligendi, blanditiis maxime et!</p>
-  </div>
+  </section> -->
 
 
   

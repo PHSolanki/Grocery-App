@@ -45,8 +45,6 @@ export class ManageaddressComponent {
       this.manageaddress.deleteCustomerAddress(this.encrypted_address_id).subscribe((res)=>{
         console.log(res);
       })  
-      
-      // let index = this.user_addresses.findIndex((ele:any)=>ele.index==address_id)
 
       this.user_addresses.splice(i,1)
 

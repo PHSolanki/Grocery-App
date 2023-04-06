@@ -8,10 +8,11 @@ import { ProductListComponent } from './product-list/product-list.component';
 const routes: Routes = [
   {path:'category' , component:CategoryComponent},
   {path:'product-list' , component:ProductListComponent},
+  // {path:'product-list/:name' , component:ProductListComponent},
   {path:'product-list/:name' , component:ProductListComponent},
-  {path:'product-details/:id' , component:ProductDetailsComponent},
+  // {path:'product-details/:id' , component:ProductDetailsComponent},
   {path:'product-details/:name' , component:ProductDetailsComponent},
-  {path:'front/catalogue/product-details/:id' , component:ProductDetailsComponent},
+  // {path:'front/catalogue/product-details/:name' , component:ProductDetailsComponent},
 ];
 
 @NgModule({
