@@ -20,7 +20,7 @@ export class ProductDetailsComponent implements OnInit{
   productId: any;
   productsArray!:any[]
   Product_Id:any
-  
+  counter:any=1
 
   ngOnInit(): void{
 
@@ -51,15 +51,13 @@ export class ProductDetailsComponent implements OnInit{
 }
 
 
-  increment(product: any){
-    product.quantity=product.quantity+1;
+  increment(){
+    this.counter=this.counter+1
   }
 
-  decrement(product: any){
-    if(product.quantity>1){
-      product.quantity=product.quantity-1;
-    }else{
-      product.quantity=1
+  decrement(){
+    if(this.counter>1){
+      this.counter=this.counter-1
     }
   }  
 
@@ -89,6 +87,20 @@ export class ProductDetailsComponent implements OnInit{
       
     })
   }
+
+
+
+  // increment(product: any){
+  //   product.quantity=product.quantity+1;
+  // }
+
+  // decrement(product: any){
+  //   if(product.quantity>1){
+  //     product.quantity=product.quantity-1;
+  //   }else{
+  //     product.quantity=1
+  //   }
+  // }
 
 
 

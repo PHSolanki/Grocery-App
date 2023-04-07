@@ -11,6 +11,57 @@
 
 <app-filter (selectCategory)="filterData($event)"></app-filter>
 
+
+<div class="d-flex mx-5 justify-content-around flex-wrap">
+  <ng-container *ngIf="Category_Id;else allproducts" >
+
+    <div class="card my-3" *ngFor="let item of product_by_cat_Id"  >
+      <img src="assets/featured3.PNG" class="card-img-top" alt="Grocery item image" routerLink="/front/catalogue/product-details/{{item.product.id}}" height="100px">
+      <div class="card-body" >
+        <h5 class="card-title"> {{item.product.title}}</h5>
+        <p class="card-text">Price: {{item.product.amount | currency : 'USD'}} </p>
+        <p class="card-text"> {{item.product.short_description}} </p>
+        <p class="card-text">Category: {{item.category_id}}</p>
+        <p class="card-text">In stock: Yes</p>
+        <ul class="card-body rating" data-mdb-toggle="rating">
+          <i class="fas fa-star fa-sm text-success" title="Bad"></i>
+          <i class="fas fa-star fa-sm text-success" title="Poor"></i>
+          <i class="fas fa-star fa-sm text-success" title="OK"></i>
+          <i class="fas fa-star fa-sm text-success" title="Good"></i>
+          <i class="far fa-star fa-sm text-success" title="Excellent"></i><br>
+        </ul>
+        <button class="btn btn-success " (click)="addToCart(item)"><i class="fas fa-shopping-cart"></i> Add to cart</button>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <ng-template #allproducts  >
+
+    <div class="card my-3" *ngFor="let item of apiProductsArray" >
+      <img src="assets/featured3.PNG" class="card-img-top" alt="Grocery item image" routerLink="/front/catalogue/product-details/{{item.id}}" height="100px">
+      <div class="card-body" >
+        <h5 class="card-title"> {{item.title}}</h5>
+        <p class="card-text">Price: {{item.amount | currency : 'USD'}} </p>
+        <p class="card-text"> {{item.short_description}} </p>
+        <p class="card-text">Category: {{item.category_id}}</p>
+        <p class="card-text">In stock: Yes</p>
+        <ul class="card-body rating" data-mdb-toggle="rating">
+          <i class="fas fa-star fa-sm text-success" title="Bad"></i>
+          <i class="fas fa-star fa-sm text-success" title="Poor"></i>
+          <i class="fas fa-star fa-sm text-success" title="OK"></i>
+          <i class="fas fa-star fa-sm text-success" title="Good"></i>
+          <i class="far fa-star fa-sm text-success" title="Excellent"></i><br>
+        </ul>
+        <button class="btn btn-success " (click)="addToCart(item)"><i class="fas fa-shopping-cart"></i> Add to cart</button>
+      </div>
+    </div>
+
+  </ng-template>
+
+</div>
+
+
 <!-- <div class="d-flex mx-5 justify-content-around flex-wrap">
   <ng-container *ngFor="let item of productsArray">
 
@@ -36,29 +87,3 @@
   </ng-container>
 
 </div> -->
-
-<div class="d-flex mx-5 justify-content-around flex-wrap">
-  <ng-container *ngFor="let item of product_by_cat_Id">
-
-    <div class="card my-3" >
-      <img src="assets/featured3.PNG" class="card-img-top" alt="Grocery item image" routerLink="/front/catalogue/product-details/{{item.id}}" height="100px">
-      <div class="card-body" >
-        <h5 class="card-title"> {{item.product.title}}</h5>
-        <p class="card-text">Price: {{item.product.amount | currency : 'USD'}} </p>
-        <p class="card-text"> {{item.product.short_description}} </p>
-        <p class="card-text">Category: {{item.category_id}}</p>
-        <p class="card-text">In stock: Yes</p>
-        <ul class="card-body rating" data-mdb-toggle="rating">
-          <i class="fas fa-star fa-sm text-success" title="Bad"></i>
-          <i class="fas fa-star fa-sm text-success" title="Poor"></i>
-          <i class="fas fa-star fa-sm text-success" title="OK"></i>
-          <i class="fas fa-star fa-sm text-success" title="Good"></i>
-          <i class="far fa-star fa-sm text-success" title="Excellent"></i><br>
-        </ul>
-        <button class="btn btn-success " (click)="addToCart(item)"><i class="fas fa-shopping-cart"></i> Add to cart</button>
-      </div>
-    </div>
-
-  </ng-container>
-
-</div>

@@ -1,7 +1,7 @@
   <section class="container sproduct my-5 pt-5">
     <div class="row mt-5">
       <div class="col-lg-5 col-md-12 col-12">
-        <img class="img-fluid w-100" src="" alt="">
+        <img class="img-fluid w-100" src="assets/featured3.PNG" alt="">
       </div>
       <div class="col-lg-6 col-md-12 col-12">
         <h3 class="py-4">{{product_Data.title}}</h3>
@@ -18,15 +18,15 @@
         
 
           <div class="button my-5 p-2">
-            <button class="btn-secondary" (click)="decrement(product_Data)">-</button>
-            <span></span>
-            <button class="btn-secondary" (click)="increment(product_Data)">+</button>
+            <button class="btn-secondary" (click)="decrement()">-</button>
+            <span>{{counter}}</span>
+            <button class="btn-secondary" (click)="increment()">+</button>
           </div>
           <h3 class="my-4">Price : {{product_Data.amount | currency:'USD'}} </h3>
        
           
         <!-- <i class="far fa-heart"></i> -->
-        <button class="btn btn-success w-100" (click)="addToCart(product)">Add to Cart</button>
+        <button class="btn btn-success w-100" (click)="addToCart(product_Data)">Add to Cart</button>
       </div>
     </div>
   </section>

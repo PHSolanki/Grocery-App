@@ -33,6 +33,7 @@ export class CartComponent {
   ]
 
   getCartDetails : any =[]
+ 
 
   scroll(){
     window.scrollBy(0,0)
@@ -65,7 +66,7 @@ export class CartComponent {
     if(localStorage.getItem('localCart')){
       this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!)
       this.subTotal = this.getCartDetails.reduce(function(acc: any , val: any){
-        return acc +(val.price * val.quantity);
+        return acc +(val.amount * val.quantity);
       },0)     
     }
     this.cartservice.cartTotal.emit(this.subTotal)
@@ -97,4 +98,67 @@ export class CartComponent {
   addProducts(){
     this.router.navigate(['front/catalogue/product-list'])
   }
+
+
+
+
+  // cartDetails(){
+  //   if(localStorage.getItem('localCart')){
+  //     this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!)
+  //   }
+  // }
+
+  // incQty(item:any){
+  //   item.quantity=item.quantity+1
+  //   localStorage.setItem('localCart' , JSON.stringify(this.getCartDetails))
+  //   this.getTotal()
+  // }
+  
+
+  // decQty(item:any){
+  //   if(item.quantity!=1){
+  //     item.quantity=item.quantity-1
+  //   }
+  //   localStorage.setItem('localCart' , JSON.stringify(this.getCartDetails)) 
+  //   this.getTotal()
+  // }
+
+  // subTotal:number=0
+
+  // getTotal(){
+  //   if(localStorage.getItem('localCart')){
+  //     this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!)
+  //     this.subTotal = this.getCartDetails.reduce(function(acc: any , val: any){
+  //       return acc +(val.price * val.quantity);
+  //     },0)     
+  //   }
+  //   this.cartservice.cartTotal.emit(this.subTotal)
+  // }
+
+
+  // singleDelete(item: any ){
+  //   console.log(item);
+  //   if(localStorage.getItem('localCart')){
+  //     this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!);
+      
+  //     for(let i=0 ; i<this.getCartDetails.length ; i++){
+  //       if(this.getCartDetails[i].id===item){
+  //         this.getCartDetails.splice(i,1);
+  //         console.log(this.getCartDetails);
+  //         localStorage.setItem( 'localCart', JSON.stringify(this.getCartDetails))
+
+  //       }
+  //       this.cartservice.cartData.emit(this.getCartDetails)
+  //     }
+  //   }    
+  // }
+
+  // checkout(){
+  //   this.router.navigate(['front/cart/checkout'])
+  // }
+
+  // addProducts(){
+  //   this.router.navigate(['front/catalogue/product-list'])
+  // }
+
 }

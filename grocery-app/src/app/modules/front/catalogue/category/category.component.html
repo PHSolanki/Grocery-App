@@ -6,36 +6,13 @@
       <ul class="nav  justify-content-end m-3 ">
         <li class="nav-item" *ngFor="let item of navCategories">
           <a class="nav-link " aria-current="page" routerLink="/front/catalogue/product-list"  href="" *ngIf="item.name=='All'">All</a>
-          <a class="nav-link " aria-current="page" routerLink="/front/catalogue/product-list/{{item.name}}"  href="" *ngIf="item.name!=='All'">{{item.name}}</a>
+          <a class="nav-link " aria-current="page" routerLink="/front/catalogue/product-list/{{item.id}}"  href="" *ngIf="item.name!=='All'">{{item.name}}</a>
         </li>
       </ul>
   </div>
 </nav>
 
  <!-- End of Explore categories navbar -->
-
-
-<!-- Start of Explore categories carousel  -->
-
-<!-- <carousel [autoplay]="true" [pauseOnHover]="true" [height]="300">
-
-  <div class="carousel-cell" *ngFor="let item of categories">
-    <div class="card bg-warning-subtle p-3 m-2">
-      <a routerLink="/front/catalogue/product-list/{{item.name}}" routerLinkActive="router-link-active"><img [src]="item.source" alt="" width="120" height="120"/></a>
-      <div class="card-body text-center">
-        <p>{{item.name}}</p>
-        <small>{{item.num_of_items}}items</small>
-      </div>
-    </div>
-  </div>
-
-</carousel>
-<br><br><br><br><br> -->
-
-  <!-- End of Explore categories carousel  -->
-
-
-
 
 
   <!-- API  category carousel -->
@@ -53,3 +30,25 @@
     </div>
   
   </carousel>
+
+
+
+
+  <!-- Start of Explore categories carousel  -->
+
+<!-- <carousel [autoplay]="true" [pauseOnHover]="true" [height]="300">
+
+  <div class="carousel-cell" *ngFor="let item of categories">
+    <div class="card bg-warning-subtle p-3 m-2">
+      <a routerLink="/front/catalogue/product-list/{{item.name}}" routerLinkActive="router-link-active"><img [src]="item.source" alt="" width="120" height="120"/></a>
+      <div class="card-body text-center">
+        <p>{{item.name}}</p>
+        <small>{{item.num_of_items}}items</small>
+      </div>
+    </div>
+  </div>
+
+</carousel>
+<br><br><br><br><br> -->
+
+  <!-- End of Explore categories carousel  -->

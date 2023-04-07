@@ -18,7 +18,9 @@ export class CategoryComponent {
 
   ngOnInit(){
     this.category_name=this.activatedroute.snapshot.paramMap.get('name');
-    this.category=this.categories.find(x=>x.name==this.category_name)   
+    this.category=this.navCategories.find(x=>x.name==this.category_name)
+    
+       
 
     this.scroll()
     this.getAllCategory()
@@ -40,10 +42,12 @@ export class CategoryComponent {
 
   navCategories=[
     {name:'All'},
-    {name:'Vegetables'},
-    {name:'Fruits'},
-    {name:'Coffee And Teas'},
-    {name:'Meat'}
+    {name:'Category-1' , id :1},
+    {name:'Category-2' , id :2},
+    {name:'Category-3' ,id :3},
+    {name:'Category-4' , id :4},
+    {name:'Category-5' , id :5},
+    {name:'Category-6' ,id :6}
   ]
 
   categories=[

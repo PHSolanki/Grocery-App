@@ -22,7 +22,7 @@ export class FilterComponent {
 
   getCategory(){
     this.selectCategory.emit(this.selectedValue)
-    // console.log(this.selectedValue) 
+    console.log(this.selectedValue) 
   }
 
   getProduct(){
