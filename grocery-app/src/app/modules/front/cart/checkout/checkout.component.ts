@@ -2,6 +2,7 @@ import { compileNgModule } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/shared/Services/cart-service/cart.service';
+import { editUserService } from 'src/app/shared/Services/Edit user-Service/edituser.service';
 
 @Component({
   selector: 'app-checkout',
@@ -12,20 +13,29 @@ export class CheckoutComponent {
 
   //#region 
   grandTotal:any = 0
-  constructor(private route :Router , public cartservice:CartService){  }
+  constructor(private route :Router , public cartservice:CartService , private edituser:editUserService){  }
 
-  address_user=[
-    {id:1, address:"Odell J. Gabbert 1045 Kildeer DriveNorfolk, VA 23502"},
-    {id:2, address:"Thelma E. Rogers 3651 Burton AvenueMemphis, TN 38104"},
-    {id:3, address:"Kathleen G. Hogan 3516 Layman AvenueFayetteville, NC 28306"}
-  ]
+  User_addresses:any=[]
  
   ngOnInit(){
-   this.scroll()           
+   this.scroll()
+   this.getUserDetails()           
   }
 
   scroll(){
     window.scrollBy(0,0)
+  }
+
+  getUserDetails(){
+    this.edituser.getUserDetails().subscribe((res)=>{
+      console.log(res);
+
+      this.User_addresses=res.data.addresses
+
+      console.log(this.User_addresses);
+      
+      
+    })
   }
 
   Cancel_Checkout(){

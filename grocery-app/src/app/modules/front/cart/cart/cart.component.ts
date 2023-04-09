@@ -87,7 +87,8 @@ export class CartComponent {
         }
         this.cartservice.cartData.emit(this.getCartDetails)
       }
-    }    
+    } 
+    this.getTotal()   
   }
 
 

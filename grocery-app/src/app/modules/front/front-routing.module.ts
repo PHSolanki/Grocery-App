@@ -26,6 +26,7 @@ const routes: Routes = [
   loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
 },
   
+{path: 'front/cart/checkout',canActivate:[AuthGuard],component: CheckoutComponent},
 {path: '**',component: ErrorComponent}
 ];
 
