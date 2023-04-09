@@ -1,3 +1,4 @@
+import { ReturnStatement } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { CartService } from 'src/app/shared/Services/cart-service/cart.service';
@@ -43,6 +44,8 @@ export class CartComponent {
     if(localStorage.getItem('localCart')){
       this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!)
     }
+    console.log("this.getCartDetails",this.getCartDetails);
+    
   }
 
   incQty(item:any){
@@ -61,6 +64,7 @@ export class CartComponent {
   }
 
   subTotal:number=0
+  Total:number
 
   getTotal(){
     if(localStorage.getItem('localCart')){
@@ -69,6 +73,8 @@ export class CartComponent {
         return acc +(val.amount * val.quantity);
       },0)     
     }
+    this.GST=this.subTotal*0.18
+    this.Total=this.subTotal+this.GST
     this.cartservice.cartTotal.emit(this.subTotal)
   }
 
@@ -91,10 +97,59 @@ export class CartComponent {
     this.getTotal()   
   }
 
+  product:any
+  
+  productArr:any=[]
+
+  get_cart_data(){
+    console.log("getCartDetails",this.getCartDetails)
+    for(let i=0; i<this.getCartDetails.length ; i++){
+      console.log("Cart Length",this.getCartDetails.length);
+
+
+      this.product={
+        "product_id" : this.getCartDetails[i].id,
+        "product_name" : this.getCartDetails[i].title,
+        "qty" : this.getCartDetails[i].quantity,
+        "product_amount" : this.getCartDetails[i].amount,
+        "discount_type" : 1,
+        "discount_amount" : 10
+      }
+      
+      console.log("Products Array" , this.productArr);
+      console.log("Products" ,this.product);
+      this.productArr.push(this.product)
+      
+    }
+    console.log("Products Array" , this.productArr);
+    return this.productArr
+  }
+
+
+  object_of_data:any
+  GST:any
 
   checkout(){
+
+    this.object_of_data={
+      "order_date": "2023-04-06",
+      "special_note": "its special",
+      "estimate_delivery_date": "2023-04-15",
+      "sub_total": this.getTotal(),
+      "tax_amount": this.GST.toFixed(2),
+      "discount_amount": 10,
+      "total_amount": this.Total,
+      "paid_amount": this.Total,
+      "payment_type": 2,
+      "order_products":this.get_cart_data(),
+    }
+
+    console.log("object of data" , this.object_of_data);
+    
     this.router.navigate(['front/cart/checkout'])
+
   }
+
 
   addProducts(){
     this.router.navigate(['front/catalogue/product-list'])

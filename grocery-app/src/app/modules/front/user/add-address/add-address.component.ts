@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CountryService } from 'src/app/shared/Services/Country/country.service';
 import { editUserService } from 'src/app/shared/Services/Edit user-Service/edituser.service';
 import { EncryptionService } from 'src/app/shared/Services/encryption/encryption.service';
 
@@ -11,7 +12,9 @@ import { EncryptionService } from 'src/app/shared/Services/encryption/encryption
 })
 export class AddAddressComponent {
 
-  constructor(private add_address : editUserService,private route:ActivatedRoute,private _encryptionservice:EncryptionService){}
+  constructor(private add_address : editUserService,private route:ActivatedRoute,private _encryptionservice:EncryptionService ,private _countryservice:CountryService){
+    this.countries = this._countryservice.getCountries();
+  }
   
   Edit_Address_Id:any
   btn_name="ADD Address"
@@ -19,10 +22,30 @@ export class AddAddressComponent {
   image_name="Add Address"
   user_address:any
 
+  states:any=[]
+  City:any=[]
+  countries:any
+  cities: string[] = [];
+
   ngOnInit(){
     this.getAddressId()  
     this.scroll()
     this.setAddressValue()
+
+    this.country.valueChanges.subscribe((country) => {
+  
+      if (country) {
+        this.states = this._countryservice.getStatesByCountry(country);
+    
+        this.state.valueChanges.subscribe((state) => {
+      
+          if (state) {
+            this.City = this._countryservice.getCitiesByState(this.country.value, state);      
+          }
+        });
+      }
+    }); 
+    
   }
 
   scroll(){
@@ -40,13 +63,24 @@ export class AddAddressComponent {
     })
   }
 
+  country = new FormControl ("",[
+    Validators.required
+  ]);
+  state = new FormControl ("",[
+    Validators.required
+  ]);
+  city = new FormControl ("",[
+    Validators.required
+  ])
+
+  
   add_Address = new FormGroup({
     address_line_1 : new FormControl('' , [Validators.required]),
     address_line_2 : new FormControl('' , [Validators.required]),
     area : new FormControl('' , [Validators.required]),
-    city : new FormControl('' , [Validators.required]),
-    state : new FormControl('' , [Validators.required]),
-    country : new FormControl('' , [Validators.required]),
+    city:this.city,
+    state:this.state,
+    country:this.country,
     postal_code : new FormControl('' , [Validators.required , Validators.maxLength(6) , Validators.pattern('^[0-9]{6}(?:-[0-9]{4})?$')]),
     landmark : new FormControl('' , [Validators.required]),
     tag : new FormControl('' ,[Validators.required]),

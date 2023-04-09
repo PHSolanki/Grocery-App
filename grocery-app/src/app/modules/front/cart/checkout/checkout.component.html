@@ -15,7 +15,7 @@
         <div class="card mt-4 ms-4">
           <div *ngFor="let item of User_addresses" class="ms-4">
             <div class="form-check mt-4">
-              <input type="radio" class="form-check-input" name="address"  checked>
+              <input type="radio" class="form-check-input" id="{{item.id}}" name="address" value="{{item.id}}" #addressSelect (change)="selectAddress(addressSelect.value)" checked>
               <label class="form-check-label" for=""><b>{{item.tag}}</b>: {{item.address_line_1}},{{item.address_line_2}},{{item.area}},{{item.city}},{{item.state}},{{item.country}}</label>
             </div>
           </div>

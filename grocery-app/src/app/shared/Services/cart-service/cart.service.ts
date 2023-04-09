@@ -1,7 +1,9 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Subject } from 'rxjs';
+import { Subject, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class CartService {
   itemsCart:any=[];
   subTotal:number=0
 
-  constructor(private toast:ToastrService,private currentProduct:ActivatedRoute) { }
+  constructor(private toast:ToastrService,private currentProduct:ActivatedRoute , private http:HttpClient) { }
 
   ngOnInit(){
     this.getProductId()
@@ -82,6 +84,7 @@ export class CartService {
     else{
       var id = category.id;
       let index : number = -1;
+      
       this.itemsCart=JSON.parse(localStorage.getItem('localCart')!)
       for(let i=0 ; i<this.itemsCart.length ; i++){
         if(parseInt(id) == parseInt(this.itemsCart[i].id)){
@@ -101,6 +104,19 @@ export class CartService {
  
     this.cartData.emit(this.itemsCart)
   }
+
+
+  baseUrl=environment.baseUrl
+  add_order=environment.add_order
+
+   
+Add_Order(data:any,delivery_address_id:any,billing_address_id:any,payment_status:any,order_status:any){
+  try {
+    return this.http.post<any>(this.baseUrl+this.add_order,data,{headers: new HttpHeaders({'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*',"billing_address_id":billing_address_id,"delivery_address_id":delivery_address_id,"payment_status":payment_status,"order_status":order_status})})
+  } catch (error:any) {
+    return throwError(() => new Error(error))
+  }
+}
 
 
 

@@ -36,9 +36,9 @@
 
   </ng-container>
 
-  <ng-template #allproducts >
+  <ng-template *ngIf="!Category_Id" >
 
-    <div class="card my-3" *ngFor="let item of apiProductsArray" >
+    <div class="card my-3" *ngFor= "let item of apiProductsArray" >
       <img src="assets/featured3.PNG" class="card-img-top" alt="Grocery item image" routerLink="/front/catalogue/product-details/{{item.id}}" height="100px">
       <div class="card-body" >
         <h5 class="card-title"> {{item.title}}</h5>

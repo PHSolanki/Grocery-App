@@ -55,42 +55,55 @@
   
             </div>
   
-            <div class="col-md-5">
-  
-              <label for="dob" class="form-label">City</label>
-              <input type="text" formControlName="city" class="form-control" id="dob" placeholder="Enter City name">
-              
-              <div *ngIf="get_Address.city.touched && get_Address.city.invalid" class="text-danger col-md-5">
-                <div *ngIf="get_Address.city.errors?.['required']" class="text-danger">Please Enter City Name</div>
+            <div class="row g-2 ">
+
+              <div class="col-md-3">
+
+                <label for="country" class="form-label">Country</label>
+                
+                <select formControlName="country" class="form-select" id="country" placeholder="Enter Country"  >
+                  <option value="" disabled selected>Select Country</option>
+                  <option *ngFor="let country of countries" [value]="country.shortName">{{ country.name }}</option>
+                </select>
+
+                <div *ngIf="get_Address.country.touched && get_Address.country.invalid" class="text-danger">
+                  <div *ngIf="get_Address.country.errors?.['required']" class="text-danger">Country Must Required</div>
+                </div>
+
+              </div>
+
+              <div class="col-md-3">
+
+                <label for="inputState" class="form-label" >State</label>
+
+                <select id="inputState" formControlName="state" class="form-select" name="inputState" >
+                  <option value="" disabled selected>Select State</option>
+                  <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+                </select>
+
+                <div *ngIf="get_Address.state.touched && get_Address.state.invalid" class="text-danger">
+                  <div *ngIf="get_Address.state.errors?.['required']" class="text-danger">State Must Required</div>
+                </div>
+
               </div>
               
-            </div>
-  
-          </div>
-  
-          <div class="row g-2">
-  
-            <div class="col-md-5">
-  
-              <label for="inputEmail" class="form-label">State</label>
-              <input type="email" formControlName="state" class="form-control" id="inputEmail" placeholder="Enter Your State Name">
-              
-              <div *ngIf="get_Address.state.touched && get_Address.state.invalid" class="text-danger col-md-5">
-                <div *ngIf="get_Address.state.errors?.['required']" class="text-danger">Please Enter Your State Name</div>
+              <div class="col-md-3">
+
+                <label for="inputCity" class="form-label">City</label>
+
+                <select formControlName="city" class="form-select" id="inputCity">
+                  <option value="" disabled selected>Select City</option>
+                  <option  *ngFor="let city of City" [value]="city">{{ city }}</option>
+                </select>
+
+                <div *ngIf="get_Address.city.touched && get_Address.city.invalid" class="text-danger">
+                 <div *ngIf="get_Address.city.errors?.['required']" class="text-danger">City Must Required</div>
+                </div>
+            
               </div>
-              
             </div>
-  
-            <div class="col-md-5">
-  
-              <label for="alternatecontact" class="form-label">Country</label>
-              <input type="text" formControlName="country" class="form-control" id="alternatecontact" placeholder="Enter Your Country Name">
-              
-              <div *ngIf="get_Address.country.touched && get_Address.country.invalid" class="text-danger col-md-5">
-                <div *ngIf="get_Address.country.errors?.['required']" class="text-danger">Please Enter Your Country Name </div>
-              </div>
-              
-            </div>
+
+           
 
             <div class="col-md-5">
   

@@ -14,6 +14,8 @@ export const environment = {
     get_all_categories : "category/get-all-categories",
     get_all_products:"product/get-all-products",
     get_product_by_category_Id : "product/get-product-by-category-id",
-    get_product_by_id :"product/get-product-by-id"
+    get_product_by_id :"product/get-product-by-id",
+
+    add_order: "order/add-order"
     
 };
