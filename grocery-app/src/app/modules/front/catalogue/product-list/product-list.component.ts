@@ -26,6 +26,7 @@ export class ProductListComponent {
 
   constructor(private route:ActivatedRoute ,private _encryptionservice:EncryptionService,private cartservice:CartService , private productdata:ProductDataService){}
 
+
   ngOnInit(){
     this.scroll()
     this.getCategoryId()
@@ -102,9 +103,7 @@ export class ProductListComponent {
 
     }
 
-  }
-  
-  
+  }  
   
   
   
