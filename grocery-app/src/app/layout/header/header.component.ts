@@ -55,11 +55,9 @@ export class HeaderComponent {
 
   userName(){
 
-    this.router.events.subscribe((res:any)=>{
-    let temp_name = localStorage.getItem('Login Credentials')
-    let uasername = temp_name && JSON.parse(temp_name)
-    this.name = uasername.username
-  })
+    this.name= JSON.parse( localStorage.getItem('User First Name'))
+    console.log("UserName",this.name);
+    
 }
   
   cartItemFunc(){

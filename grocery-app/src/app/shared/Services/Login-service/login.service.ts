@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import {  User_Login_Model } from 'src/data-type';
+import { User_Login_Model } from 'src/app/shared/interface/data-type';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 

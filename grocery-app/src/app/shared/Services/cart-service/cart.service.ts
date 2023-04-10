@@ -69,33 +69,39 @@ export class CartService {
   }
 
 
-  addToCart(category: any){
+  addToCart(product: any){
 
     this.toast.success('product added to cart')
 
-    console.log(category);
+    console.log(product);
 
     let cartDataNull=localStorage.getItem('localCart');
     if(cartDataNull == null){
+
       let storedData : any = []
-      storedData.push(category)
+      storedData.push(product)
       localStorage.setItem('localCart' ,JSON.stringify(storedData)) 
+
     }
     else{
-      var id = category.id;
+
+      var id = product.id;
       let index : number = -1;
       
       this.itemsCart=JSON.parse(localStorage.getItem('localCart')!)
       for(let i=0 ; i<this.itemsCart.length ; i++){
         if(parseInt(id) == parseInt(this.itemsCart[i].id)){
-          this.itemsCart.quantity = category.quantity;
+          this.itemsCart.quantity = product.quantity;
           index = i;
           break          
         }
       }
+
       if(index == -1){
-        this.itemsCart.push(category);
+
+        this.itemsCart.push(product);
         localStorage.setItem('localCart' , JSON.stringify(this.itemsCart))
+        
       }
       else{
         localStorage.setItem('localCart' ,JSON.stringify(this.itemsCart))
@@ -106,9 +112,10 @@ export class CartService {
   }
 
 
-  baseUrl=environment.baseUrl
-  add_order=environment.add_order
-
+  baseUrl= environment.baseUrl
+  add_order= environment.add_order
+  get_customer_all_orders = environment.get_customer_all_orders
+  
    
 Add_Order(data:any,delivery_address_id:any,billing_address_id:any,payment_status:any,order_status:any){
   try {
@@ -117,6 +124,18 @@ Add_Order(data:any,delivery_address_id:any,billing_address_id:any,payment_status
     return throwError(() => new Error(error))
   }
 }
+
+getAllOrders(){
+  try {
+    return this.http.get<any>(this.baseUrl+this.get_customer_all_orders,{headers: new HttpHeaders({'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*'})})
+  } catch (error:any) {
+    return throwError(() => new Error(error))
+  }
+}
+
+
+
+
 
 
 

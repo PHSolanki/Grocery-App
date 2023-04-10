@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
-import { User_Register_Model } from 'src/data-type';
+import { User_Register_Model } from 'src/app/shared/interface/data-type';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({

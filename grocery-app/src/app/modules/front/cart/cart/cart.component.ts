@@ -34,6 +34,10 @@ export class CartComponent {
   ]
 
   getCartDetails : any =[]
+  object_of_data:any
+  GST:any
+  subTotal:number=0
+  Total:number
  
 
   scroll(){
@@ -63,8 +67,7 @@ export class CartComponent {
     this.getTotal()
   }
 
-  subTotal:number=0
-  Total:number
+ 
 
   getTotal(){
     if(localStorage.getItem('localCart')){
@@ -73,7 +76,7 @@ export class CartComponent {
         return acc +(val.amount * val.quantity);
       },0)     
     }
-    this.GST=this.subTotal*0.18
+    this.GST=this.subTotal*(0.18)
     this.Total=this.subTotal+this.GST
     this.cartservice.cartTotal.emit(this.subTotal)
   }
@@ -126,8 +129,7 @@ export class CartComponent {
   }
 
 
-  object_of_data:any
-  GST:any
+
 
   checkout(){
 
@@ -135,7 +137,7 @@ export class CartComponent {
       "order_date": "2023-04-06",
       "special_note": "its special",
       "estimate_delivery_date": "2023-04-15",
-      "sub_total": this.getTotal(),
+      "sub_total": this.subTotal,
       "tax_amount": this.GST.toFixed(2),
       "discount_amount": 10,
       "total_amount": this.Total,
@@ -145,6 +147,7 @@ export class CartComponent {
     }
 
     console.log("object of data" , this.object_of_data);
+    localStorage.setItem('object_of_data',JSON.stringify(this.object_of_data))
     
     this.router.navigate(['front/cart/checkout'])
 

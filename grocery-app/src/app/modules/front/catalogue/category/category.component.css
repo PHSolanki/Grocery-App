@@ -42,6 +42,9 @@
   a{
     color: rgb(85, 209, 85);
 }
+carousel{
+  z-index: 50;
+}
 
 
   

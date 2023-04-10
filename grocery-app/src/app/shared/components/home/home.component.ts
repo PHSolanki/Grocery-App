@@ -81,8 +81,12 @@ recentlyAdded=[
 
  getAllProducts(){
   this.productservice.getAllProducts().subscribe((res)=>{
+if(res){
+  if(res.data){
 
-    console.log(res);
+  }
+}
+   console.log(res);
 
     this.apiProductsArray= res.data
     console.log("apiproducts array" , this.apiProductsArray);

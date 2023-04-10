@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartService } from 'src/app/shared/Services/cart-service/cart.service';
 
 @Component({
   selector: 'app-orders',
@@ -7,47 +8,37 @@ import { Component } from '@angular/core';
 })
 export class OrdersComponent {
 
+  constructor(private _cartservice : CartService){}
+
  
   ngOnInit(){
     this.scroll()
+    this.getAllOrders()
   }
   scroll(){
     window.scrollBy(0,0)
   }
 
   
-  orders = [
-    {
-      id: 1,
-      customerName: 'Priyanshu Solanki',
-      orderDate: new Date(2023, 2, 31),
-      items: [
-        { name: 'Product A', quantity: 2 },
-        { name: 'Product B', quantity: 1 },
-        { name: 'Product C', quantity: 3 }
-      ],
-      totalPrice: 100.0
-    },
-    {
-      id: 2,
-      customerName: 'Parag Parmar',
-      orderDate: new Date(2023, 2, 30),
-      items: [
-        { name: 'Product D', quantity: 1 },
-        { name: 'Product E', quantity: 4 }
-      ],
-      totalPrice: 50.0
-    },
-    {
-      id: 3,
-      customerName: 'Dutt Mistry',
-      orderDate: new Date(2023, 2, 29),
-      items: [
-        { name: 'Product F', quantity: 3 },
-        { name: 'Product G', quantity: 2 },
-        { name: 'Product H', quantity: 1 }
-      ],
-      totalPrice: 75.0
-    }
-  ]
+  All_orders_Arr:any = [ ]
+  Items_Count:any
+
+  getAllOrders(){
+    this._cartservice.getAllOrders().subscribe((get_all_orders_res)=>{
+      console.log("Get all orders",get_all_orders_res);
+      if(get_all_orders_res){
+        if(get_all_orders_res.data){
+          if(get_all_orders_res.data.orders){
+            this.All_orders_Arr=get_all_orders_res.data.orders
+            console.log(this.All_orders_Arr);
+             this.Items_Count= this.All_orders_Arr.length
+             console.log(this.Items_Count);
+             
+            
+          }
+        }
+      }
+    })
+  }
+  
 }

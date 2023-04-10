@@ -13,7 +13,7 @@
 
 
 <div class="d-flex mx-5 justify-content-around flex-wrap">
-  <ng-container  *ngIf="Category_Id" >
+  <ng-container  *ngIf="Category_Id;else allproducts" >
 
     <div class="card my-3" *ngFor= "let item of product_by_cat_Id"  >
       <img src="assets/featured3.PNG" class="card-img-top" alt="Grocery item image" routerLink="/front/catalogue/product-details/{{item.product.id}}" height="100px">
@@ -36,13 +36,13 @@
 
   </ng-container>
 
-  <ng-template *ngIf="!Category_Id" >
+  <ng-template #allproducts >
 
     <div class="card my-3" *ngFor= "let item of apiProductsArray" >
       <img src="assets/featured3.PNG" class="card-img-top" alt="Grocery item image" routerLink="/front/catalogue/product-details/{{item.id}}" height="100px">
       <div class="card-body" >
         <h5 class="card-title"> {{item.title}}</h5>
-        <p class="card-text">Price: {{item.amount | currency : 'USD'}} </p>
+        <p class="card-text">Price: {{item.amount  | currency : 'USD'}} </p>
         <p class="card-text"> {{item.short_description}} </p>
         <p class="card-text">Category: {{item.category_id}}</p>
         <p class="card-text">In stock: Yes</p>

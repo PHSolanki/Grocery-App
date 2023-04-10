@@ -59,27 +59,33 @@ export class CheckoutComponent {
   order_status:any="Nn9l9xhHYQsvNB503C4EAQ==";
   token:any
   cartData:any
-  
+  orders_Arr:any=[]
+
   Place_Order(){
 
     if(this.billing_address_id){
 
       this.token=localStorage.getItem('token')
-      this.cartData=localStorage.getItem('localCart')
+      this.cartData=JSON.parse(localStorage.getItem('object_of_data'))
 
       if(this.token){
         this.cartservice.Add_Order(this.cartData,this.delivery_address_id,this.billing_address_id,this.payment_status,this.order_status).subscribe((Add_order_res)=>{
-          console.log(Add_order_res);
-          console.log("");
-          
-          
+          console.log("Add_order_res",Add_order_res);
+          if(Add_order_res){
+            if(Add_order_res.data){
+              this.orders_Arr=Add_order_res.data
+              console.log("Orders Array",this.orders_Arr);
+              
+            }
+          }
+        
         })
       }
       
     }
 
 
-    // this.route.navigate(['front/cart/success'])
+    this.route.navigate(['front/cart/success'])
   }
 
 

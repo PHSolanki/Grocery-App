@@ -2,6 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { environment } from 'src/environments/environment.development';
+import { ChangePassword } from '../../interface/data-type';
+import { Edit_user_detail } from '../../interface/data-type';
+import { Add_User_Address } from '../../interface/data-type';
 
 @Injectable({
   providedIn: 'root'
@@ -58,9 +61,9 @@ export class editUserService {
     }
   }
 
-  deleteCustomerAddress(data:any){
+  deleteCustomerAddress(id:any){
     try{
-      return this.http.delete(this.baseUrl+this.delete_customer_address ,{headers: new HttpHeaders({'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*','address_id':data})} )
+      return this.http.delete(this.baseUrl+this.delete_customer_address ,{headers: new HttpHeaders({'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*','address_id':id})} )
     }catch(error:any){
       return throwError(()=>new Error(error))
     }
