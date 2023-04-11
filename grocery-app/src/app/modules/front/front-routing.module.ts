@@ -6,7 +6,7 @@ import { CartComponent } from './cart/cart/cart.component';
 import { ProductDetailsComponent } from './catalogue/product-details/product-details.component';
 import { CheckoutComponent } from './cart/checkout/checkout.component';
 import { HomeComponent } from '../../shared/components/home/home.component';
-import { AuthGuard } from 'src/app/Guards/auth.guard';
+import { AuthGuard } from 'src/app/shared/Guards/auth.guard';
 
 const routes: Routes = [
 {path: '',redirectTo: 'home',pathMatch: 'full'}, 
