@@ -115,6 +115,7 @@ export class CartService {
   baseUrl= environment.baseUrl
   add_order= environment.add_order
   get_customer_all_orders = environment.get_customer_all_orders
+  get_order_by_id = environment.get_order_by_id
   
    
 Add_Order(data:any,delivery_address_id:any,billing_address_id:any,payment_status:any,order_status:any){
@@ -128,6 +129,14 @@ Add_Order(data:any,delivery_address_id:any,billing_address_id:any,payment_status
 getAllOrders(){
   try {
     return this.http.get<any>(this.baseUrl+this.get_customer_all_orders,{headers: new HttpHeaders({'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*'})})
+  } catch (error:any) {
+    return throwError(() => new Error(error))
+  }
+}
+
+getOrderById(order_id:any){
+  try {
+    return this.http.get<any>(this.baseUrl+this.get_order_by_id,{headers: new HttpHeaders({'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*', 'order_id':order_id})})
   } catch (error:any) {
     return throwError(() => new Error(error))
   }

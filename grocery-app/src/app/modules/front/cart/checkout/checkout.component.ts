@@ -60,6 +60,7 @@ export class CheckoutComponent {
   token:any
   cartData:any
   orders_Arr:any=[]
+  order_id:any
 
   Place_Order(){
 
@@ -69,30 +70,42 @@ export class CheckoutComponent {
       this.cartData=JSON.parse(localStorage.getItem('object_of_data'))
 
       if(this.token){
+
         this.cartservice.Add_Order(this.cartData,this.delivery_address_id,this.billing_address_id,this.payment_status,this.order_status).subscribe((Add_order_res)=>{
           console.log("Add_order_res",Add_order_res);
+
           if(Add_order_res){
+            
             if(Add_order_res.data){
+
               this.orders_Arr=Add_order_res.data
               console.log("Orders Array",this.orders_Arr);
+
+              this.order_id= Add_order_res.data.id
+              console.log("order id", this.order_id);
+              
+
+              localStorage.setItem('order id' , this.order_id)
+
+              
               
             }
           }
-        
+          
         })
+        localStorage.removeItem('localCart')
       }
       
     }
 
-
     this.route.navigate(['front/cart/success'])
   }
 
-
-
-
-
   Cancel_Checkout(){
-  this.route.navigate(['/home'])
+
+    localStorage.removeItem('object_of_data')
+    this.route.navigate(['/home'])
+    
   }
+  
 }

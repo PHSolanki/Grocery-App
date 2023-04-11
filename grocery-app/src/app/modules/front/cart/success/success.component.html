@@ -12,3 +12,28 @@
   <img class="rounded mx-auto d-block img-fluid" src="assets/Success.PNG" height="450" width="450">
   <h2 class="text-center text-success fw-bolder">Your Order Has been Placed Successfully</h2>
 </div>
+
+<div class="text-center mb-5">
+  
+  <button class="btn btn-success mx-2" (click)="getOrderById()" *ngIf="button_clicked">View Order Summary</button>
+  <button class="btn btn-success mx-2" (click)="RemoveOrderId()">Continue Shopping</button>
+
+</div>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center mb-5">
+    <div class="col" *ngFor="let item of orderDetails;let i=index">
+      <div class="card shadow-sm border border-success" >
+        <div class="card-body">
+
+          <h5 class="card-title fs-5 text-success">Order Details</h5>
+          <p class="card-text fs-6">{{item.id}}</p>
+          <p class="card-text fs-6"><b>Order Date:</b>{{item.createdAt | date:"mediumDate"}}</p>
+          <p class="card-text fs-6"><b>Delivery Address: </b>{{item.delivery_address.tag + " - "}} {{item.delivery_address.address_line_1}}{{", "+ item.delivery_address.area}}{{", "+ item.delivery_address.city}}{{", "+ item.delivery_address.country}}</p>
+          <p class="card-text fs-6"><b>Estimated Delivery Date:</b> {{item.estimate_delivery_date | date:"mediumDate"}}</p>
+          <p class="card-text fs-6"><b>Order Total:</b> {{item.total_amount | currency:'USD'}}</p>
+          
+
+        </div>
+      </div>
+    </div>
+  </div>

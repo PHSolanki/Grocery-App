@@ -1,7 +1,13 @@
-<app-header></app-header>
+<ngx-ui-loader fgsColor="rgb(85, 209, 85)" text="Please Wait..." pbColor="rgb(85, 209, 85)"></ngx-ui-loader>
 
+<div ngxUiLoaderBlurred (blur)="10">
 
-<router-outlet></router-outlet>
-
-<!-- Footer -->
-<app-footer></app-footer>
+    <app-header></app-header>
+    
+    
+    <router-outlet></router-outlet>
+    
+    <!-- Footer -->
+    <app-footer></app-footer>
+    
+</div>

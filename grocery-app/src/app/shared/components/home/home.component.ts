@@ -72,25 +72,25 @@ recentlyAdded=[
  ]
 
  getAllCategory(){
-  this.categoryservice.getAllCategory().subscribe((res)=>{
-    console.log(res);    
-  })
   this.router.navigate(['/front/catalogue/category'])
  }
 
 
  getAllProducts(){
   this.productservice.getAllProducts().subscribe((res)=>{
-if(res){
-  if(res.data){
+    if(res){
 
-  }
-}
-   console.log(res);
+      console.log(res);
 
-    this.apiProductsArray= res.data
-    console.log("apiproducts array" , this.apiProductsArray);
-    
+      if(res.data){
+
+        this.apiProductsArray= res.data
+        console.log("apiproducts array" , this.apiProductsArray);
+
+      }
+
+    }
+
   })
  }
 

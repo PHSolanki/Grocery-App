@@ -22,6 +22,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { AuthInterceptor } from 'src/app/shared/Interceptor/auth.interceptor';
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 const appRoute : Routes = [
   
 ]
@@ -48,7 +49,11 @@ const appRoute : Routes = [
     ToastrModule.forRoot({
       positionClass:'toast-bottom-center'
     }), 
-    HttpClientModule// ToastrModule added
+    HttpClientModule,// ToastrModule added,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground:true
+    })
    
   ],
   providers: [

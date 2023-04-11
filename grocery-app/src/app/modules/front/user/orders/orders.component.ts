@@ -26,17 +26,23 @@ export class OrdersComponent {
   getAllOrders(){
     this._cartservice.getAllOrders().subscribe((get_all_orders_res)=>{
       console.log("Get all orders",get_all_orders_res);
+      
       if(get_all_orders_res){
+
         if(get_all_orders_res.data){
+
           if(get_all_orders_res.data.orders){
+
             this.All_orders_Arr=get_all_orders_res.data.orders
             console.log(this.All_orders_Arr);
-             this.Items_Count= this.All_orders_Arr.length
-             console.log(this.Items_Count);
-             
-            
+
+            this.Items_Count= this.All_orders_Arr.length
+            console.log(this.Items_Count); 
+
           }
+
         }
+
       }
     })
   }
