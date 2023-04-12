@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { editUserService } from 'src/app/shared/Services/Edit user-Service/edituser.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { editUserService } from 'src/app/shared/Services/Edit user-Service/editu
 })
 export class ChangepasswordComponent {
 
-  constructor(private changepassword:editUserService){}
+  constructor(private changepassword:editUserService , private toaster:ToastrService){}
 
   ngOnInit(){
     this.scroll()
@@ -42,8 +43,18 @@ export class ChangepasswordComponent {
   
     console.log(this.changePass.value);
       
-    this.changepassword.changePassword(this.changePass.value).subscribe((res)=>{
-    console.log(res);      
+    this.changepassword.changePassword(this.changePass.value).subscribe((Change_password_res)=>{
+    console.log(Change_password_res); 
+    
+    if(Change_password_res){
+
+      if(Change_password_res.success=true){
+        this.toaster.success(Change_password_res.message)
+      }
+
+    }
+    },(err)=>{
+      this.toaster.error(err.error.message)
     })
   }
   

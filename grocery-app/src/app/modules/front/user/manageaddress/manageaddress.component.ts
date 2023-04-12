@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { editUserService } from 'src/app/shared/Services/Edit user-Service/edituser.service';
 import { EncryptionService } from 'src/app/shared/Services/encryption/encryption.service';
 
@@ -13,7 +14,7 @@ export class ManageaddressComponent {
   user_addresses:any=[]
   encrypted_address_id:any
 
-  constructor(private manageaddress : editUserService , private router:Router , private _encryptionservice : EncryptionService){}
+  constructor(private manageaddress : editUserService , private _encryptionservice : EncryptionService , private toaster:ToastrService){}
   
   ngOnInit(){
     this.scroll()
@@ -36,22 +37,23 @@ export class ManageaddressComponent {
 
   deleteCustomerAddress(address_id:any ,i:any ){
    
-    this._encryptionservice.Encryption(address_id.toString()).subscribe((res)=>{
-      console.log((res));
+    this._encryptionservice.Encryption(address_id.toString()).subscribe((Encrypted_address_Id_res)=>{
+      console.log((Encrypted_address_Id_res));
       
-      this.encrypted_address_id = res.data
+      this.encrypted_address_id = Encrypted_address_Id_res.data
       
      
-      this.manageaddress.deleteCustomerAddress(this.encrypted_address_id).subscribe((res)=>{
-        console.log(res);
+      this.manageaddress.deleteCustomerAddress(this.encrypted_address_id).subscribe((deleted_address_res)=>{
+        console.log(deleted_address_res);
+
+        if(deleted_address_res){
+          this.toaster.success("Data Deleted")
+        }
       })  
 
       this.user_addresses.splice(i,1)
 
     })
 
-
-
-    
   }
 }

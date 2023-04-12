@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { editUserService } from 'src/app/shared/Services/Edit user-Service/edituser.service';
 
 
@@ -17,7 +18,7 @@ export class UserProfileComponent {
   RegisterData:any
   resetData: any;
   
-  constructor(private route: ActivatedRoute , private edituser: editUserService ) { }
+  constructor(private route: ActivatedRoute , private edituser: editUserService , private toaster:ToastrService) { }
 
   ngOnInit(): void {
     this.getUserDetails()  
@@ -40,8 +41,19 @@ export class UserProfileComponent {
 
       if(this.Profile.valid){   
         console.log(this.Profile.value)
-        this.edituser.editUser(this.Profile.value).subscribe((res)=>{
-          console.log(res);          
+        this.edituser.editUser(this.Profile.value).subscribe((Profile_res)=>{
+          console.log(Profile_res);
+          
+          if(Profile_res){
+
+            if(Profile_res.success=true){
+              this.toaster.success(Profile_res.message)
+            }
+
+          }
+
+        },(err)=>{
+          this.toaster.error(err.error.message)
         })
            
       }

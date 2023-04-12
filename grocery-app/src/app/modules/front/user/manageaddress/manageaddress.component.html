@@ -15,7 +15,7 @@
 
   <div class="container mt-5 mb-5">
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center" *ngIf="user_addresses.length else emptyAddress ">
       <div class="col" *ngFor="let item of user_addresses;let i=index">
         <div class="card shadow-sm border border-success" >
           <div class="card-body">
@@ -46,6 +46,15 @@
     </div>
 
   </div>
-  
+
+  <ng-template #emptyAddress>
+
+    
+    <div class="text-center" >
+      <h2 class="my-5 p-2"> <b> No Address Saved </b> </h2><br>
+      <button class="btn btn-success" routerLink="../add-address">Add Address</button>
+    </div>
+    
+  </ng-template>
 </div>
 

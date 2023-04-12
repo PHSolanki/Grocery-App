@@ -15,7 +15,8 @@ export class CartService {
   product: any;
   productId: any;
   itemsCart:any=[];
-  subTotal:number=0
+  subTotal:number=0;
+  quantity=1
 
   constructor(private toast:ToastrService,private currentProduct:ActivatedRoute , private http:HttpClient) { }
 
@@ -68,18 +69,29 @@ export class CartService {
     this.product= this.productsArray.find(x => x.id == this.productId)
   }
 
+  ProductObj:any
+  ProductAddObj:any
+  product_quantity={
+    quantity:this.quantity
+  }
+
 
   addToCart(product: any){
 
     this.toast.success('product added to cart')
 
-    console.log(product);
+    product=Object.assign(
+      product,
+      this.product_quantity
+      )
+      console.log(product);
 
     let cartDataNull=localStorage.getItem('localCart');
     if(cartDataNull == null){
 
       let storedData : any = []
       storedData.push(product)
+      
       localStorage.setItem('localCart' ,JSON.stringify(storedData)) 
 
     }
@@ -90,6 +102,16 @@ export class CartService {
       
       this.itemsCart=JSON.parse(localStorage.getItem('localCart')!)
       for(let i=0 ; i<this.itemsCart.length ; i++){
+
+        this.ProductObj=this.itemsCart[i];
+        this.ProductAddObj=Object.assign(
+          this.ProductObj,
+          this.product_quantity
+        )
+
+        console.log("Product Add object",this.ProductAddObj);
+        
+
         if(parseInt(id) == parseInt(this.itemsCart[i].id)){
           this.itemsCart.quantity = product.quantity;
           index = i;
@@ -141,14 +163,6 @@ getOrderById(order_id:any){
     return throwError(() => new Error(error))
   }
 }
-
-
-
-
-
-
-
-
 
 
 }

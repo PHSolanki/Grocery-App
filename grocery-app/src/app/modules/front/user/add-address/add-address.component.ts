@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CountryService } from 'src/app/shared/Services/Country/country.service';
 import { editUserService } from 'src/app/shared/Services/Edit user-Service/edituser.service';
 import { EncryptionService } from 'src/app/shared/Services/encryption/encryption.service';
@@ -12,7 +13,7 @@ import { EncryptionService } from 'src/app/shared/Services/encryption/encryption
 })
 export class AddAddressComponent {
 
-  constructor(private add_address : editUserService,private route:ActivatedRoute,private _encryptionservice:EncryptionService ,private _countryservice:CountryService){
+  constructor(private add_address : editUserService,private route:ActivatedRoute,private _encryptionservice:EncryptionService ,private _countryservice:CountryService , private toaster:ToastrService){
     this.countries = this._countryservice.getCountries();
   }
   
@@ -54,11 +55,15 @@ export class AddAddressComponent {
 
   getAddressId(){
     this.route.paramMap.subscribe((params)=>{
+
       this.Edit_Address_Id=params.get('id')
       console.log("Edit_Address_Id",this.Edit_Address_Id)
+
       if(this.Edit_Address_Id){
+
         this.btn_name="Edit Address"
         this.image_name="Update Address"
+
       }
     })
   }
@@ -98,7 +103,16 @@ export class AddAddressComponent {
 
         this.add_address.add_addressFunc(this.add_Address.value).subscribe((res)=>{
           console.log((res));
-        
+
+          if(res){
+
+            if(res.success==true){
+              this.toaster.success(res.message)
+            }else{
+              this.toaster.warning(res.message)
+            }
+            
+          }
         })
       }
       
@@ -127,6 +141,15 @@ export class AddAddressComponent {
 
     this.add_address.updateCustomerAddress(this.add_Address.value,encrypted_id).subscribe((res)=>{
       console.log("res",res);
+      if(res){
+
+        if(res.success=true){
+          this.toaster.success(res.message)
+        }else{
+          this.toaster.warning(res.message)
+        }
+        
+      }
 
     })
     
@@ -139,8 +162,6 @@ export class AddAddressComponent {
       this.user_address=res.data.addresses;
 
       this.user_address=this.user_address.filter((ele:any) => ele.id==this.Edit_Address_Id);
-
-      console.log(this.user_address[0].address_line_1);
 
       this.add_Address.setValue({
 
