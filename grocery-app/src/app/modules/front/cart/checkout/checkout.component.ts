@@ -85,7 +85,7 @@ export class CheckoutComponent {
               console.log("order id", this.order_id);
               
 
-              localStorage.setItem('order id' , this.order_id)
+              localStorage.setItem('order id' , JSON.stringify( this.order_id))
 
               
               

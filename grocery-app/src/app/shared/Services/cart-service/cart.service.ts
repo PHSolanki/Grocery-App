@@ -78,21 +78,21 @@ export class CartService {
 
   addToCart(product: any){
 
-    this.toast.success('product added to cart')
-
+    
     product=Object.assign(
       product,
       this.product_quantity
       )
       console.log(product);
-
-    let cartDataNull=localStorage.getItem('localCart');
-    if(cartDataNull == null){
-
-      let storedData : any = []
-      storedData.push(product)
       
-      localStorage.setItem('localCart' ,JSON.stringify(storedData)) 
+      let cartDataNull=localStorage.getItem('localCart');
+      if(cartDataNull == null){
+        
+        let storedData : any = []
+        storedData.push(product)
+        
+        localStorage.setItem('localCart' ,JSON.stringify(storedData)) 
+        this.toast.success('product added to cart')
 
     }
     else{
@@ -123,10 +123,12 @@ export class CartService {
 
         this.itemsCart.push(product);
         localStorage.setItem('localCart' , JSON.stringify(this.itemsCart))
+        this.toast.success('product added to cart')
         
-      }
-      else{
+      }else{
+
         localStorage.setItem('localCart' ,JSON.stringify(this.itemsCart))
+        this.toast.warning("Product already exist in cart")
       }
     }
  

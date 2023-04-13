@@ -145,12 +145,12 @@ export class AddAddressComponent {
 
         if(res.success=true){
           this.toaster.success(res.message)
-        }else{
-          this.toaster.warning(res.message)
         }
         
       }
 
+    },(err)=>{
+      this.toaster.error(err.error.message)
     })
     
   }

@@ -45,29 +45,36 @@ export class LoginComponent {
       localStorage.setItem('Login Credentials', JSON.stringify(this.loginFormValue))
 
       this.userservice.userLogin(this.loginFormValue).subscribe((User_login_res:any)=>{
-        
-      console.log("User_login_res",User_login_res.data.user.first_name);
 
-      this.username=User_login_res.data.user.first_name
+        if(User_login_res){
 
-      localStorage.setItem('User First Name' , JSON.stringify(this.username) )
+          if(User_login_res.data){
 
-      localStorage.setItem("token" , User_login_res.data.token);
-      this.router.navigate(['/home'])
-      this.toaster.success('Login Successful')
+            if(User_login_res.data.user){
 
-        
+              if(User_login_res.data.user.first_name){
+                
+                console.log("User_login_res",User_login_res.data.user.first_name);
+                
+                this.username=User_login_res.data.user.first_name
+                
+                localStorage.setItem('User First Name' , JSON.stringify(this.username) )
+                
+                localStorage.setItem("token" , User_login_res.data.token);
+                this.router.navigate(['/home'])
+                
+                this.toaster.success('Login Successful')
+
+              }
+            }
+          }
+        }
+
+      },(err)=>{
+        this.toaster.error(err.error.message)
       })
     }
     
-
   }
-
-
-
-
-submit(){
-  console.log(this.loginForm.value);
-};
 
 }

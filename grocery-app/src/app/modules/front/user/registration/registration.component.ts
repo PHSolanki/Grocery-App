@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/Services/Registration-service/registration.service';
 
 
@@ -10,7 +11,7 @@ import { AuthService } from 'src/app/shared/Services/Registration-service/regist
 })
 export class RegistrationComponent {
 
-    constructor(private _authservice:AuthService){}
+    constructor(private _authservice:AuthService , private _toastservice: ToastrService){}
 
       @Input() User_Register: any = new FormGroup({
         first_name: new FormControl('', Validators.required),
@@ -34,23 +35,32 @@ export class RegistrationComponent {
 
           console.log(this.User_Register.value);
           this._authservice.User_Register(this.User_Register.value).subscribe((User_Register_res: any)=>{
-            console.log("User_Register_res",User_Register_res)
-            this.errorMessage=""
-          }
-          ,(Register_error: { status: number; error: { error: { errors: { message: any; }[]; }; }; })=>{ 
-            console.log("Register_error.status",Register_error.status)
-            if(Register_error.status==400){
 
-              this.errorMessage="User Already Exists"
+            if(User_Register_res){
 
-            }else{
-  
-              this.errorMessage = Register_error.error.error.errors[0].message;
-              this.loading = false;
-              console.log('error caught in component',Register_error.error.error.errors[0].message)
-              
+              console.log("User_Register_res",User_Register_res)
+              this.errorMessage=""
+              this._toastservice.success("Registration Successful")
+
             }
-          }
+
+          },(Register_error) => {
+
+              console.log('Register_error.status', Register_error.status);
+              if (Register_error.status == 400){
+
+                this.errorMessage = 'User Already Exists';
+                this._toastservice.error('User Already Exists', '', {positionClass: 'toast-bottom-center'});
+
+              }else{
+
+                this.errorMessage = Register_error.error.error.errors[0].message;
+                this.loading = false;
+                this._toastservice.error(Register_error.error.error.errors[0].message);
+                console.log('error caught in component',Register_error.error.error.errors[0].message);
+
+              }
+            }
           )
         }
       }
