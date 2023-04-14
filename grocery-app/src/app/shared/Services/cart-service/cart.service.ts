@@ -75,6 +75,20 @@ export class CartService {
     quantity:this.quantity
   }
 
+  getCartData(){
+
+    let userData = localStorage.getItem('Login Credentials')
+    let userName = userData && JSON.parse(userData).username;
+    console.log(userName);
+
+    let cartdata = localStorage.getItem(`${userName}'s_cart`)
+    let userCart = cartdata && JSON.parse(cartdata);
+    if (!userCart) {
+      return [];
+    }
+    return userCart;
+  }
+
 
   addToCart(product: any){
 
@@ -83,6 +97,18 @@ export class CartService {
       this.product_quantity
       )
       console.log(product);
+
+      let userData =localStorage.getItem('Login Credentials')
+      let userName = userData && JSON.parse(userData).username
+      console.log("USERNAME",userName);
+
+      let user = localStorage.getItem(`${userName}'s_cart`)
+      let userCart = user && JSON.parse(user);
+      if(!userCart){
+        userCart=[];
+      }
+      
+      userCart=this.getCartData()
       
       let cartDataNull=localStorage.getItem('localCart');
       if(cartDataNull == null){
@@ -91,7 +117,7 @@ export class CartService {
         storedData.push(product)
         
         localStorage.setItem('localCart' ,JSON.stringify(storedData)) 
-        this.toast.success('product added to cart')
+        this.toast.success('Product added to cart')
 
     }
     else{
@@ -122,7 +148,7 @@ export class CartService {
 
         this.itemsCart.push(product);
         localStorage.setItem('localCart' , JSON.stringify(this.itemsCart))
-        this.toast.success('product added to cart')
+        this.toast.success('Product added to cart')
         
       }else{
 
