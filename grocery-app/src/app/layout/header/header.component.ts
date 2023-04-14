@@ -17,27 +17,39 @@ export class HeaderComponent {
     this.userExistfunc()
     this.userName()
     this.cartCounter()
+
+    this.router.events.subscribe((res:any)=>{
+      if(res.url){
+        
+        this.cartCounter()
+        this.userName()
+
+      }
+    })
   }
 
   scroll(){
     window.scrollBy(0,0)
   }
 
+  cartItem:number=0;
+  userExist:boolean=false
+  name : any = ''
 
   cartCounter(){
-    let cartProduct = localStorage.getItem('localCart')
+
+    let userData =localStorage.getItem('Login Credentials')
+    let userName = userData && JSON.parse(userData).username
+
+    let cartProduct = localStorage.getItem(`'${userName}'s_cart`)
     if(cartProduct){
       this.cartItem = JSON.parse(cartProduct).length
     }
     this.cartservice.cartData.subscribe((res : any)=>{
       this.cartItem = res.length
     })
+    
   }
-
-  cartItem:number=0;
-  userExist:boolean=false
-  name : any = ''
-  
 
   userExistfunc(){
 
@@ -58,16 +70,18 @@ export class HeaderComponent {
     this.name= JSON.parse( localStorage.getItem('User First Name'))
     console.log("UserName",this.name);
     
-}
+  }
   
   cartItemFunc(){
-    if(localStorage.getItem('localCart') != null){
-      var cartCount = JSON.parse(localStorage.getItem('localCart')!)
+
+    let userData =localStorage.getItem('Login Credentials')
+    let userName = userData && JSON.parse(userData).username
+
+    if(localStorage.getItem(`'${userName}'s_cart`) != null){
+      var cartCount = JSON.parse(localStorage.getItem(`'${userName}'s_cart`)!)
       console.log(cartCount);
       this.cartItem= cartCount.length      
     }    
   }
-
- 
 
 }

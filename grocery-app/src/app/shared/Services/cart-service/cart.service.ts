@@ -110,14 +110,16 @@ export class CartService {
       
       userCart=this.getCartData()
       
-      let cartDataNull=localStorage.getItem('localCart');
+      let cartDataNull=localStorage.getItem(`'${userName}'s_cart`);
       if(cartDataNull == null){
         
         let storedData : any = []
         storedData.push(product)
         
-        localStorage.setItem('localCart' ,JSON.stringify(storedData)) 
+        localStorage.setItem(`'${userName}'s_cart` ,JSON.stringify(storedData)) 
         this.toast.success('Product added to cart')
+
+        
 
     }
     else{
@@ -125,7 +127,7 @@ export class CartService {
       var id = product.id;
       let index : number = -1;
       
-      this.itemsCart=JSON.parse(localStorage.getItem('localCart')!)
+      this.itemsCart=JSON.parse(localStorage.getItem(`'${userName}'s_cart`)!)
       for(let i=0 ; i<this.itemsCart.length ; i++){
 
         this.ProductObj=this.itemsCart[i];
@@ -147,12 +149,12 @@ export class CartService {
       if(index == -1){
 
         this.itemsCart.push(product);
-        localStorage.setItem('localCart' , JSON.stringify(this.itemsCart))
+        localStorage.setItem(`'${userName}'s_cart` , JSON.stringify(this.itemsCart))
         this.toast.success('Product added to cart')
         
       }else{
 
-        localStorage.setItem('localCart' ,JSON.stringify(this.itemsCart))
+        localStorage.setItem(`'${userName}'s_cart` ,JSON.stringify(this.itemsCart))
         this.toast.warning("Product already exist in cart")
       }
     }

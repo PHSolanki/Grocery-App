@@ -44,34 +44,52 @@ export class CartComponent {
     window.scrollBy(0,0)
   }
 
+      
+
   cartDetails(){
-    if(localStorage.getItem('localCart')){
-      this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!)
+
+    let userData =localStorage.getItem('Login Credentials')
+    let userName = userData && JSON.parse(userData).username
+
+    if(localStorage.getItem(`'${userName}'s_cart`)){
+      this.getCartDetails = JSON.parse(localStorage.getItem(`'${userName}'s_cart`)!)
     }
     console.log("this.getCartDetails",this.getCartDetails);
     
   }
 
   incQty(item:any){
+
+    let userData =localStorage.getItem('Login Credentials')
+    let userName = userData && JSON.parse(userData).username
+
     item.quantity=item.quantity+1
-    localStorage.setItem('localCart' , JSON.stringify(this.getCartDetails))
+    localStorage.setItem(`'${userName}'s_cart` , JSON.stringify(this.getCartDetails))
     this.getTotal()
   }
   
 
   decQty(item:any){
+
+    let userData =localStorage.getItem('Login Credentials')
+    let userName = userData && JSON.parse(userData).username
+
     if(item.quantity!=1){
       item.quantity=item.quantity-1
     }
-    localStorage.setItem('localCart' , JSON.stringify(this.getCartDetails)) 
+    localStorage.setItem(`'${userName}'s_cart` , JSON.stringify(this.getCartDetails)) 
     this.getTotal()
   }
 
  
 
   getTotal(){
-    if(localStorage.getItem('localCart')){
-      this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!)
+
+    let userData =localStorage.getItem('Login Credentials')
+    let userName = userData && JSON.parse(userData).username
+    
+    if(localStorage.getItem(`'${userName}'s_cart`)){
+      this.getCartDetails = JSON.parse(localStorage.getItem(`'${userName}'s_cart`)!)
       this.subTotal = this.getCartDetails.reduce(function(acc: any , val: any){
         return acc +(val.amount * val.quantity);
       },0)     
@@ -84,14 +102,18 @@ export class CartComponent {
 
   singleDelete(item: any ){
     console.log(item);
-    if(localStorage.getItem('localCart')){
-      this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!);
+
+    let userData =localStorage.getItem('Login Credentials')
+    let userName = userData && JSON.parse(userData).username
+
+    if(localStorage.getItem(`'${userName}'s_cart`)){
+      this.getCartDetails = JSON.parse(localStorage.getItem(`'${userName}'s_cart`)!);
       
       for(let i=0 ; i<this.getCartDetails.length ; i++){
         if(this.getCartDetails[i].id===item){
           this.getCartDetails.splice(i,1);
           console.log(this.getCartDetails);
-          localStorage.setItem( 'localCart', JSON.stringify(this.getCartDetails))
+          localStorage.setItem( `'${userName}'s_cart`, JSON.stringify(this.getCartDetails))
 
         }
         this.cartservice.cartData.emit(this.getCartDetails)

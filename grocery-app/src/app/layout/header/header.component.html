@@ -23,7 +23,7 @@
                 <a class="nav-link text-white" routerLink="front/user/register" *ngIf="!userExist">Register</a>
               </li>
               <li class="nav-item" [routerLinkActive]="'active' ">
-                <a class="nav-link text-white " routerLink="front/user/login" aria-current="page" *ngIf="!userExist">Login</a>
+                <a class="nav-link text-white " routerLink="front/user/login" aria-current="page" (click)="userName()" *ngIf="!userExist">Login</a>
               </li>
               <li class="nav-item" [routerLinkActive]="'active'">
                 <a class="nav-link text-white " routerLink="front/user/user-profile" *ngIf="userExist" >{{name}}</a>
