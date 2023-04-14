@@ -37,9 +37,9 @@ export class editUserService {
     }
   }
 
-  add_addressFunc(data:any){
+  add_addressFunc(data:Add_User_Address){
     try{
-      return this.http.post<any>(this.baseUrl+this.add_address,data , {headers: new HttpHeaders({'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*'})})
+      return this.http.post<Add_User_Address>(this.baseUrl+this.add_address,data , {headers: new HttpHeaders({'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*'})})
     }catch (error:any){
       return throwError(()=>new Error(error))
     }

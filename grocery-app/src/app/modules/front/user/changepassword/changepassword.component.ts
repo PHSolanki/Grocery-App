@@ -14,17 +14,24 @@ export class ChangepasswordComponent {
 
   ngOnInit(){
     this.scroll()
+    this.User_Change_password()
   }
   
   scroll(){
     window.scrollBy(0,0)
   }
-  
-  changePass = new FormGroup({
-    oldPassword : new FormControl("" , [Validators.required,Validators.minLength(4)]),
-    newPassword : new FormControl("" , [Validators.required,Validators.minLength(4)]),
-    confirmNewPass : new FormControl("" , [Validators.required,this.matchPasswordValidator()])
-  })
+
+  changePass:any
+
+  User_Change_password(){
+
+    this.changePass = new FormGroup({
+      oldPassword : new FormControl("" , [Validators.required,Validators.minLength(4)]),
+      newPassword : new FormControl("" , [Validators.required,Validators.minLength(4)]),
+      confirmNewPass : new FormControl("" , [Validators.required,this.matchPasswordValidator()])
+    })
+    
+  }
 
   get get_password(){
     return this.changePass.controls

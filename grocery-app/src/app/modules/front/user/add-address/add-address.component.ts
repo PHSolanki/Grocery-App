@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Add_User_Address } from 'src/app/shared/interface/data-type';
 import { CountryService } from 'src/app/shared/Services/Country/country.service';
 import { editUserService } from 'src/app/shared/Services/Edit user-Service/edituser.service';
 import { EncryptionService } from 'src/app/shared/Services/encryption/encryption.service';
@@ -27,12 +28,13 @@ export class AddAddressComponent {
   City:any=[]
   countries:any
   cities: string[] = [];
-
+  add_Address:any
+  
   ngOnInit(){
     this.getAddressId()  
     this.scroll()
     this.setAddressValue()
-
+    this.User_Address_Add()
     this.country.valueChanges.subscribe((country) => {
   
       if (country) {
@@ -78,20 +80,22 @@ export class AddAddressComponent {
     Validators.required
   ])
 
-  
-  add_Address = new FormGroup({
-    address_line_1 : new FormControl('' , [Validators.required]),
-    address_line_2 : new FormControl('' , [Validators.required]),
-    area : new FormControl('' , [Validators.required]),
-    city:this.city,
-    state:this.state,
-    country:this.country,
-    postal_code : new FormControl('' , [Validators.required , Validators.maxLength(6) , Validators.pattern('^[0-9]{6}(?:-[0-9]{4})?$')]),
-    landmark : new FormControl('' , [Validators.required]),
-    tag : new FormControl('' ,[Validators.required]),
-  })
+  User_Address_Add(){
 
-  
+    this.add_Address = new FormGroup({
+      address_line_1 : new FormControl('' , [Validators.required]),
+      address_line_2 : new FormControl('' , [Validators.required]),
+      area : new FormControl('' , [Validators.required]),
+      city:this.city,
+      state:this.state,
+      country:this.country,
+      postal_code : new FormControl('' , [Validators.required , Validators.maxLength(6) , Validators.pattern('^[0-9]{6}(?:-[0-9]{4})?$')]),
+      landmark : new FormControl('' , [Validators.required]),
+      tag : new FormControl('' ,[Validators.required]),
+    })
+    
+  }
+    
   
   Save_Address(){
 
@@ -101,15 +105,15 @@ export class AddAddressComponent {
 
       if(this.add_Address.valid){
 
-        this.add_address.add_addressFunc(this.add_Address.value).subscribe((res)=>{
+        this.add_address.add_addressFunc(this.add_Address.value).subscribe((res:any)=>{
           console.log((res));
 
           if(res){
 
             if(res.success==true){
-              this.toaster.success(res.message)
+              this.toaster.success("Address added successfully")
             }else{
-              this.toaster.warning(res.message)
+              this.toaster.error(res.message)
             }
             
           }

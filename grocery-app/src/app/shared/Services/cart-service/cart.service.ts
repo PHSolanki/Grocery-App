@@ -78,7 +78,6 @@ export class CartService {
 
   addToCart(product: any){
 
-    
     product=Object.assign(
       product,
       this.product_quantity

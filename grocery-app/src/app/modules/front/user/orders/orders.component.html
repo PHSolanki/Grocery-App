@@ -39,7 +39,13 @@
                 <td>{{ order.id }}</td>
                 <td>{{ order.order_date | date }}</td>
                 <td>{{ order.total_amount | currency:'USD' }}</td>
-                <td>{{Items_Count}}</td>
+                <td>
+                  <ul>
+                    <li *ngFor="let item of order.order_items">
+                      {{ item.product.title }} ({{ item.qty }})
+                    </li>
+                  </ul>
+                </td>
                 <td>{{ order.totalPrice | currency:"INR" }}</td>
               </tr>
 

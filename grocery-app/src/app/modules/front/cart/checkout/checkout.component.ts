@@ -86,14 +86,13 @@ export class CheckoutComponent {
               
 
               localStorage.setItem('order id' , JSON.stringify( this.order_id))
-
-              
               
             }
           }
           
         })
         localStorage.removeItem('localCart')
+        this.cartservice.cartData.emit([])
       }
       
     }

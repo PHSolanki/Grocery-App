@@ -36,7 +36,7 @@ export class OrdersComponent {
             this.All_orders_Arr=get_all_orders_res.data.orders
             console.log(this.All_orders_Arr);
 
-            this.Items_Count= this.All_orders_Arr.length
+            this.Items_Count= get_all_orders_res.data.orders
             console.log(this.Items_Count); 
 
           }
