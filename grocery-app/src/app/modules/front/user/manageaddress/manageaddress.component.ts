@@ -35,10 +35,25 @@ export class ManageaddressComponent {
     })
   }
 
+txt:boolean=false
+
+  prompt_Fun(x:any){
+
+    if(confirm(x)){
+      this.txt=true
+    }else{
+      this.txt=false
+    }
+
+  }
   deleteCustomerAddress(address_id:any ,i:any ){
-   
-    this._encryptionservice.Encryption(address_id.toString()).subscribe((Encrypted_address_Id_res)=>{
-      console.log((Encrypted_address_Id_res));
+
+    this.prompt_Fun("Are you Sure?")
+
+   if(this.txt){
+
+     this._encryptionservice.Encryption(address_id.toString()).subscribe((Encrypted_address_Id_res)=>{
+       console.log((Encrypted_address_Id_res));
       
       this.encrypted_address_id = Encrypted_address_Id_res.data
       
@@ -54,6 +69,8 @@ export class ManageaddressComponent {
       this.user_addresses.splice(i,1)
 
     })
+    
+  }
 
   }
 }

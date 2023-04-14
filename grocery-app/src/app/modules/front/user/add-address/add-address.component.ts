@@ -143,7 +143,7 @@ export class AddAddressComponent {
 
   updateCustomerAddress(encrypted_id:any){
 
-    this.add_address.updateCustomerAddress(this.add_Address.value,encrypted_id).subscribe((res)=>{
+    this.add_address.updateCustomerAddress(this.add_Address.value,encrypted_id).subscribe({next:(res:any)=>{
       console.log("res",res);
       if(res){
 
@@ -153,8 +153,9 @@ export class AddAddressComponent {
         
       }
 
-    },(err)=>{
+    },error:(err)=>{
       this.toaster.error(err.error.message)
+    }
     })
     
   }

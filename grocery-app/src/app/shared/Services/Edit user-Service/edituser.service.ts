@@ -21,9 +21,9 @@ export class editUserService {
   update_customer_address = environment.update_customer_address
   delete_customer_address = environment.delete_customer_address
 
-  changePassword(data:any){
+  changePassword(data:ChangePassword){
     try {
-      return this.http.put<any>(this.baseUrl+this.change_password, data)
+      return this.http.put<ChangePassword>(this.baseUrl+this.change_password, data)
     } catch (error:any) {
       return throwError(() => new Error(error))
     }
@@ -53,9 +53,9 @@ export class editUserService {
     }
   }
 
-  updateCustomerAddress(data:any,id:any){
+  updateCustomerAddress(data:Edit_user_detail,id:any){
     try{
-      return this.http.put<any>(this.baseUrl+this.update_customer_address,data,{headers: new HttpHeaders({'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*','address_id':id})})
+      return this.http.put<Edit_user_detail>(this.baseUrl+this.update_customer_address,data,{headers: new HttpHeaders({'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*','address_id':id})})
     }catch(error:any){
       return throwError(()=>new Error(error))
     }

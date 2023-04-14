@@ -50,22 +50,27 @@ export class ChangepasswordComponent {
   
     console.log(this.changePass.value);
       
-    this.changepassword.changePassword(this.changePass.value).subscribe((Change_password_res)=>{
-    console.log(Change_password_res); 
+    this.changepassword.changePassword(this.changePass.value).subscribe({next:(Change_password_res:any)=>{
+      console.log(Change_password_res); 
     
-    if(Change_password_res){
+      if(Change_password_res){
 
-      if(Change_password_res.success=true){
-        this.toaster.success(Change_password_res.message)
+        if(Change_password_res.success=true){
+          this.toaster.success(Change_password_res.message)
+        }
+
       }
 
-    }
-    },(err)=>{
+    },error:(err)=>{
       this.toaster.error(err.error.message)
+    }
     })
   }
+
+  
+}
   
     
   
   
-}
+
