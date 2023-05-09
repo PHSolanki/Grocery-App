@@ -56,8 +56,8 @@ export class CheckoutComponent {
     
   }
 
-  payment_status:any="W4YV_pkH7OAkvZO4P1gbzA=="
-  order_status:any="Nn9l9xhHYQsvNB503C4EAQ==";
+  payment_status:any="IJjOhx0uYI4ZK5Y-Wzfm2Q===="
+  order_status:any="JbAbzZt-w7vv_SPXXQI4Jw====";
   token:any
   cartData:any
   orders_Arr:any=[]
